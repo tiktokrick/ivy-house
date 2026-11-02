@@ -1,0 +1,15 @@
+---
+permalink: /robots.txt
+layout: false
+eleventyExcludeFromCollections: true
+---
+{%- if build.isProduction %}
+User-agent: *
+Disallow: /admin/
+
+Sitemap: {{ site.domain }}/sitemap.xml
+{%- else %}
+# Not the live site: keep previews out of search engines.
+User-agent: *
+Disallow: /
+{%- endif %}

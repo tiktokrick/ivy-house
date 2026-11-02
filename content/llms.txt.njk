@@ -1,0 +1,30 @@
+---
+permalink: /llms.txt
+layout: false
+eleventyExcludeFromCollections: true
+---
+# {{ site.name }}
+
+> {{ site.name }} is an independent, family-run {{ "private" if not site.nhs }} dental practice in {{ site.address.town }}, {{ site.address.county }}. It has been run by the same family for {{ site.yearsLabel }} and is led by principal dentist {{ site.principal.name }}.{% if site.acceptingNewPatients %} The practice is welcoming new patients.{% endif %}
+
+- Address: {{ site.address.street }}, {{ site.address.town }}, {{ site.address.county }} {{ site.address.postcode }}
+- Phone: {{ site.phone }}
+- Email: {{ site.email }}
+- Areas served: {{ site.areaServed | join(", ") }}
+- NHS: {{ "Yes" if site.nhs else "No, private treatment only" }}
+- How to book: request a callback at {{ site.domain }}/contact/ or call. There is no online booking.
+
+## Treatments
+
+- [Keep your teeth healthy]({{ site.domain }}/maintenance/): check-ups, hygiene appointments, children's dentistry
+- [Repair]({{ site.domain }}/repair/): broken teeth, lost fillings, crowns, urgent appointments; many repairs are done the same day
+- [Missing teeth]({{ site.domain }}/missing-teeth/): dental implants, bridges and dentures
+- [Dental implants]({{ site.domain }}/missing-teeth/dental-implants/): process, timeline and indicative cost
+
+## More
+
+- [Fees]({{ site.domain }}/fees/): indicative "from" prices
+- [New patients]({{ site.domain }}/new-patients/)
+- [Our team]({{ site.domain }}/team/)
+- [About the practice]({{ site.domain }}/about/)
+- [CQC and GDC]({{ site.domain }}/patient-information/cqc-and-gdc/)
