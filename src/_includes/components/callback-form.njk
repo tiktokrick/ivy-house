@@ -1,0 +1,49 @@
+{#- Callback request (BRIEF §6). Netlify Forms with a honeypot, no reCAPTCHA.
+    Collects the minimum: no email, no clinical details. -#}
+{% macro callbackForm(site, id = "callback") -%}
+<form class="callback-form" name="callback" method="POST" action="/thank-you/" data-netlify="true" netlify-honeypot="company" id="{{ id }}" data-callback-form>
+  <input type="hidden" name="form-name" value="callback">
+  <p class="callback-form__honeypot" aria-hidden="true">
+    <label>Leave this empty <input name="company" tabindex="-1" autocomplete="off"></label>
+  </p>
+
+  <div class="field">
+    <label for="{{ id }}-name">Name <span aria-hidden="true">*</span></label>
+    <input id="{{ id }}-name" name="name" type="text" autocomplete="name" required>
+  </div>
+
+  <div class="field">
+    <label for="{{ id }}-phone">Phone <span aria-hidden="true">*</span></label>
+    <input id="{{ id }}-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" required>
+  </div>
+
+  <fieldset class="field field--choices">
+    <legend>Best time to call</legend>
+    {%- for opt in ["Morning", "Afternoon", "Any time"] %}
+    <label class="choice"><input type="radio" name="best-time" value="{{ opt }}"{% if loop.last %} checked{% endif %}> {{ opt }}</label>
+    {%- endfor %}
+  </fieldset>
+
+  <fieldset class="field field--choices">
+    <legend>Are you a new or existing patient?</legend>
+    <label class="choice"><input type="radio" name="patient-type" value="New" checked> New</label>
+    <label class="choice"><input type="radio" name="patient-type" value="Existing"> Existing</label>
+  </fieldset>
+
+  <div class="field">
+    <label for="{{ id }}-message">Message <span class="field__optional">(optional)</span></label>
+    <textarea id="{{ id }}-message" name="message" rows="3" aria-describedby="{{ id }}-message-hint"></textarea>
+    <p class="field__hint" id="{{ id }}-message-hint">Please don't include medical details.</p>
+  </div>
+
+  <div class="field field--consent">
+    <label class="choice">
+      <input type="checkbox" name="consent" value="yes" required>
+      <span>I agree to Ivy House contacting me about my request, as set out in the <a href="/patient-information/privacy/">privacy notice</a>.</span>
+    </label>
+  </div>
+
+  <button class="button button--solid" type="submit">Request a callback</button>
+  <p class="field__hint">For anything urgent, call us on <a href="{{ site.phone | telHref }}" data-event="phone_click">{{ site.phone | tbc | safe }}</a>.</p>
+</form>
+{%- endmacro %}

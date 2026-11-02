@@ -1,0 +1,29 @@
+{% from "components/button.njk" import button %}
+<header class="site-header on-dark" data-site-header>
+  <div class="container site-header__inner">
+    <a class="wordmark" href="/" aria-label="{{ site.name }}, home">
+      <span class="wordmark__name">Ivy House</span>
+      <span class="wordmark__sub">Dental Practice</span>
+    </a>
+
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" hidden data-nav-toggle>
+      <span class="nav-toggle__bars" aria-hidden="true"></span>
+      <span>Menu</span>
+    </button>
+
+    <nav class="site-nav" id="site-nav" aria-label="Main">
+      <ul class="site-nav__list">
+        {%- for item in nav %}
+        <li><a href="{{ item.url }}"{% if page.url.startsWith(item.url) %} aria-current="{{ 'page' if page.url == item.url else 'true' }}"{% endif %}>{{ item.label }}</a></li>
+        {%- endfor %}
+      </ul>
+    </nav>
+
+    <div class="site-header__actions">
+      <a class="site-header__phone" href="{{ site.phone | telHref }}" data-event="phone_click">
+        <span class="visually-hidden">Call us on </span>{{ site.phone | tbc | safe }}
+      </a>
+      {{ button("Request a callback", "/contact/#callback", "solid", "small") }}
+    </div>
+  </div>
+</header>

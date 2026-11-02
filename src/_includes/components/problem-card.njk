@@ -1,0 +1,9 @@
+{#- "How can we help?" card: a patient problem linking to its category page. -#}
+{% macro problemCard(card) -%}
+<article class="problem-card">
+  <p class="problem-card__index" aria-hidden="true">{{ card.index }}</p>
+  <h3 class="problem-card__title"><a href="{{ card.url }}">{{ card.title }}</a></h3>
+  <p class="problem-card__text">{{ card.text }}</p>
+  <p class="problem-card__more" aria-hidden="true">Find out more <span>&rarr;</span></p>
+</article>
+{%- endmacro %}

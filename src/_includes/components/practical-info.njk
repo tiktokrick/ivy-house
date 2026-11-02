@@ -1,0 +1,40 @@
+{% macro addressBlock(site) -%}
+<address class="address">
+  {{ site.name }}<br>
+  {{ site.address.street | tbc | safe }}<br>
+  {{ site.address.town }}, {{ site.address.county }}<br>
+  {{ site.address.postcode | tbc | safe }}
+</address>
+{%- endmacro %}
+
+{% macro hoursTable(site) -%}
+<table class="hours">
+  <caption class="visually-hidden">Opening hours</caption>
+  <tbody>
+    {%- for h in site.hours %}
+    <tr>
+      <th scope="row">{{ h.day }}</th>
+      <td>{% if h.opens | isTbc %}{{ h.opens | tbc | safe }}{% else %}{{ h.opens }}–{{ h.closes }}{% endif %}</td>
+    </tr>
+    {%- endfor %}
+  </tbody>
+</table>
+{%- endmacro %}
+
+{#- Hours, address, parking/access, beside the callback form. -#}
+{% macro practicalInfo(site) -%}
+<div class="practical">
+  <div class="practical__block">
+    <h3>Find us</h3>
+    {{ addressBlock(site) }}
+  </div>
+  <div class="practical__block">
+    <h3>Opening hours</h3>
+    {{ hoursTable(site) }}
+  </div>
+  <div class="practical__block">
+    <h3>Parking and access</h3>
+    <p>{{ site.parking | tbc | safe }}</p>
+  </div>
+</div>
+{%- endmacro %}

@@ -1,0 +1,12 @@
+{#- FAQ accordion on native <details>; FAQPage JSON-LD is emitted by base.njk from the same data. -#}
+{% macro faq(faqs, heading = "Questions people ask") -%}
+<section class="faq" aria-labelledby="faq-heading">
+  <h2 id="faq-heading">{{ heading }}</h2>
+  {%- for f in faqs %}
+  <details class="faq__item">
+    <summary class="faq__question">{{ f.q }}</summary>
+    <div class="faq__answer"><p>{{ f.a }}</p></div>
+  </details>
+  {%- endfor %}
+</section>
+{%- endmacro %}

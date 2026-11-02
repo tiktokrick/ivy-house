@@ -1,0 +1,24 @@
+---
+layout: layouts/page.njk
+scripts:
+  - /js/gallery.js
+---
+{#- Smile gallery. Every case is visible in the HTML; the category filter is JS enhancement only. -#}
+{% from "components/before-after.njk" import beforeAfter %}
+{{ content | safe }}
+{%- if collections.gallery.length %}
+<div class="gallery-filter" data-gallery-filter hidden>
+  <span class="gallery-filter__label">Show:</span>
+  <button type="button" aria-pressed="true" data-filter="all">All</button>
+  <button type="button" aria-pressed="false" data-filter="implant">Implants</button>
+  <button type="button" aria-pressed="false" data-filter="repair">Repair</button>
+  <button type="button" aria-pressed="false" data-filter="restoration">Restoration</button>
+</div>
+<div class="gallery-grid" data-gallery>
+  {%- for c in collections.gallery %}
+  <div data-category="{{ c.data.category }}">{{ beforeAfter(c) }}</div>
+  {%- endfor %}
+</div>
+{%- else %}
+<p>We're adding before-and-after cases from real patients, with their consent. Please check back soon.</p>
+{%- endif %}

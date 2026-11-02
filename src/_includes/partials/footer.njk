@@ -1,0 +1,61 @@
+{% from "components/practical-info.njk" import hoursTable, addressBlock %}
+<footer class="site-footer on-dark">
+  <div class="container">
+    <div class="site-footer__grid">
+      <div>
+        <p class="wordmark wordmark--footer">
+          <span class="wordmark__name">Ivy House</span>
+          <span class="wordmark__sub">Dental Practice</span>
+        </p>
+        {{ addressBlock(site) }}
+        <p>
+          <a href="{{ site.phone | telHref }}" data-event="phone_click">{{ site.phone | tbc | safe }}</a><br>
+          <a href="mailto:{{ site.email }}" data-event="email_click">{{ site.email | tbc | safe }}</a>
+        </p>
+      </div>
+
+      <div>
+        <h2 class="site-footer__heading">Opening hours</h2>
+        {{ hoursTable(site) }}
+      </div>
+
+      <nav aria-label="Footer">
+        <h2 class="site-footer__heading">Treatments</h2>
+        <ul class="site-footer__links">
+          <li><a href="/new-patients/">New patients</a></li>
+          <li><a href="/maintenance/">Maintenance</a></li>
+          <li><a href="/repair/">Repair</a></li>
+          <li><a href="/missing-teeth/">Missing teeth</a></li>
+          <li><a href="/missing-teeth/dental-implants/">Dental implants</a></li>
+          <li><a href="/fees/">Fees</a></li>
+        </ul>
+      </nav>
+
+      <nav aria-label="Patient information">
+        <h2 class="site-footer__heading">Patient information</h2>
+        <ul class="site-footer__links">
+          <li><a href="/patient-information/complaints/">Complaints</a></li>
+          <li><a href="/patient-information/privacy/">Privacy notice</a></li>
+          <li><a href="/patient-information/accessibility/">Accessibility</a></li>
+          <li><a href="/patient-information/infection-control/">Infection control</a></li>
+          <li><a href="/patient-information/cqc-and-gdc/">CQC and GDC</a></li>
+        </ul>
+      </nav>
+    </div>
+
+    <div class="site-footer__regulatory">
+      <p>
+        <strong>CQC rating:</strong> {{ site.cqc.rating | tbc | safe }}
+        {%- if not (site.cqc.url | isTbc) %} · <a href="{{ site.cqc.url }}">Read our CQC report</a>{% endif %}
+      </p>
+      <p>
+        <strong>GDC registration:</strong>
+        {%- for c in collections.clinicians %}
+        {{ c.data.name }}, GDC {{ c.data.gdc | tbc | safe }}{% if not loop.last %};{% endif %}
+        {%- endfor %}
+      </p>
+      <p class="site-footer__disclaimer">Treatment results vary. All before-and-after images and testimonials are of real patients and are used with their written consent.</p>
+      <p class="small muted">&copy; {{ build.year }} {{ site.name }}. {{ "A private practice." if not site.nhs }}</p>
+    </div>
+  </div>
+</footer>

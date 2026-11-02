@@ -1,0 +1,23 @@
+---
+layout: layouts/base.njk
+---
+{% from "components/breadcrumbs.njk" import breadcrumbs %}
+{% from "components/cta-band.njk" import ctaBand %}
+<div class="container">
+  {{ breadcrumbs(page.url | crumbs(collections.all)) }}
+  <header class="page-head">
+    {%- if eyebrow %}<p class="eyebrow">{{ eyebrow }}</p>{% endif %}
+    <h1>{{ heading or title }}</h1>
+    {%- if lede %}<p class="page-head__lede">{{ lede }}</p>{% endif %}
+  </header>
+</div>
+
+<div class="container container--narrow section--tight">
+  <div class="prose">
+    {{ content | safe }}
+  </div>
+</div>
+
+{%- if cta !== false %}
+{{ ctaBand(site) }}
+{%- endif %}

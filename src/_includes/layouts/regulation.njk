@@ -1,0 +1,19 @@
+---
+layout: layouts/page.njk
+---
+{{ content | safe }}
+<h2>Care Quality Commission (CQC)</h2>
+<p>The CQC regulates dental practices in England. Our current rating is: <strong>{{ site.cqc.rating | tbc | safe }}</strong>.</p>
+<p>{% if site.cqc.url | isTbc %}CQC report link: {{ site.cqc.url | tbc | safe }}{% else %}<a href="{{ site.cqc.url }}">Read our latest CQC report</a>{% endif %}</p>
+
+<h2>General Dental Council (GDC)</h2>
+<p>Every dental professional at Ivy House is registered with the GDC. You can check any registration on the <a href="https://olr.gdc-uk.org/searchregister">GDC online register</a>.</p>
+<table class="fee-table">
+  <caption class="fee-table__caption">Our registered clinicians</caption>
+  <thead><tr><th scope="col">Name</th><th scope="col">Role</th><th scope="col">GDC number</th></tr></thead>
+  <tbody>
+    {%- for c in collections.clinicians %}
+    <tr><th scope="row"><a href="{{ c.url }}">{{ c.data.name }}</a></th><td>{{ c.data.role }}</td><td>{{ c.data.gdc | tbc | safe }}</td></tr>
+    {%- endfor %}
+  </tbody>
+</table>

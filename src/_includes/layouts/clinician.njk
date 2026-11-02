@@ -1,0 +1,32 @@
+---
+layout: layouts/base.njk
+---
+{% from "components/breadcrumbs.njk" import breadcrumbs %}
+{% from "components/cta-band.njk" import ctaBand %}
+{% from "components/placeholder.njk" import placeholder %}
+<script type="application/ld+json">{{ { name: name, role: role, gdc: gdc, qualifications: qualifications } | schemaPerson(site, page.url) | jsonLd | safe }}</script>
+<div class="container">
+  {{ breadcrumbs(page.url | crumbs(collections.all)) }}
+</div>
+<article class="container section--tight clinician">
+  <div class="clinician__media">
+    {%- if photo %}<img src="{{ photo }}" alt="{{ name }}" sizes="(min-width: 60rem) 33vw, 90vw" loading="eager">{% else %}{{ placeholder(name, "4/5") }}{% endif %}
+  </div>
+  <div class="clinician__body">
+    <p class="eyebrow">{{ role }}</p>
+    <h1>{{ name }}</h1>
+    <dl class="clinician__facts">
+      <dt>GDC number</dt><dd>{{ gdc | tbc | safe }}</dd>
+      {%- if qualifications and qualifications.length %}
+      <dt>Qualifications</dt><dd>{{ qualifications | join(", ") | tbc | safe }}</dd>
+      {%- endif %}
+      {%- if interests and interests.length %}
+      <dt>Interests</dt><dd>{{ interests | join(", ") }}</dd>
+      {%- endif %}
+    </dl>
+    <div class="prose">
+      {{ content | safe }}
+    </div>
+  </div>
+</article>
+{{ ctaBand(site, "Book with " + name) }}

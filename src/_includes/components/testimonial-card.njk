@@ -1,0 +1,13 @@
+{#- Patient testimonial. Only consented items reach this macro. -#}
+{% macro testimonialCard(item) -%}
+{%- set d = item.data -%}
+<figure class="testimonial-card">
+  <blockquote class="testimonial-card__quote">
+    {{ item.content | safe }}
+  </blockquote>
+  <figcaption class="testimonial-card__cite">
+    <span class="testimonial-card__name">{{ d.attribution }}</span>
+    {%- if d.context %}<span class="testimonial-card__context">{{ d.context }}</span>{% endif %}
+  </figcaption>
+</figure>
+{%- endmacro %}

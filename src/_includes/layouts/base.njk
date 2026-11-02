@@ -1,0 +1,63 @@
+{%- set pageTitle = metaTitle or (title + " | " + site.name if title else site.name) -%}
+{%- set canonical = page.url | absoluteUrl(site.domain) -%}
+{%- set crumbTrail = page.url | crumbs(collections.all) -%}
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://plausible.io; connect-src 'self' https://plausible.io; img-src 'self' data:; style-src 'self'; font-src 'self'; frame-src https://www.google.com; form-action 'self'; base-uri 'self'; object-src 'none'">
+  <title>{{ pageTitle }}</title>
+  <meta name="description" content="{{ description }}">
+  <link rel="canonical" href="{{ canonical }}">
+  {%- if noindex or not build.isProduction %}
+  <meta name="robots" content="noindex">
+  {%- endif %}
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="{{ site.name }}">
+  <meta property="og:title" content="{{ pageTitle }}">
+  <meta property="og:description" content="{{ description }}">
+  <meta property="og:url" content="{{ canonical }}">
+  {%- if ogImage %}
+  <meta property="og:image" content="{{ ogImage | absoluteUrl(site.domain) }}">
+  {%- endif %}
+  <meta property="og:locale" content="en_GB">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="preload" href="/fonts/cormorant-garamond-latin-500-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/fonts/jost-latin-300-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="{{ css }}">
+  <link rel="icon" href="/img/favicon.svg" type="image/svg+xml">
+  <meta name="theme-color" content="#0e0e0e">
+
+  {%- if page.url == "/" or page.url == "/contact/" %}
+  <script type="application/ld+json">{{ site | schemaDentist | jsonLd | safe }}</script>
+  {%- endif %}
+  {%- if page.url != "/" and crumbTrail.length > 1 %}
+  <script type="application/ld+json">{{ crumbTrail | schemaBreadcrumbs(site) | jsonLd | safe }}</script>
+  {%- endif %}
+  {%- if faqs and faqs.length %}
+  <script type="application/ld+json">{{ faqs | schemaFaq | jsonLd | safe }}</script>
+  {%- endif %}
+
+  {%- if build.isProduction and site.analytics.plausibleDomain %}
+  <script defer data-domain="{{ site.analytics.plausibleDomain }}" src="https://plausible.io/js/script.js"></script>
+  {%- endif %}
+  <script defer src="/js/analytics.js"></script>
+  <script defer src="/js/nav.js"></script>
+  {%- for script in scripts %}
+  <script defer src="{{ script }}"></script>
+  {%- endfor %}
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  {% include "partials/header.njk" %}
+  <main id="main" tabindex="-1">
+    {%- if draft %}<!-- DRAFT: for Yusef review -->{% endif %}
+    {{ content | safe }}
+  </main>
+  {% include "partials/footer.njk" %}
+  {% include "partials/call-bar.njk" %}
+</body>
+</html>

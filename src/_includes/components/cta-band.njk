@@ -1,0 +1,16 @@
+{% from "components/button.njk" import button %}
+{#- Closing call to action used at the foot of content pages. -#}
+{% macro ctaBand(site, heading = "Talk to us") -%}
+<section class="cta-band on-dark" aria-labelledby="cta-heading">
+  <div class="container cta-band__inner">
+    <div>
+      <h2 id="cta-heading" class="cta-band__heading">{{ heading }}</h2>
+      <p class="muted">{% if site.acceptingNewPatients %}We're welcoming new patients. {% endif %}Leave your number and we'll call you back, or ring us now.</p>
+    </div>
+    <div class="cta-band__actions">
+      {{ button("Request a callback", "/contact/#callback", "solid") }}
+      <a class="button button--outline" href="{{ site.phone | telHref }}" data-event="phone_click">Call {{ site.phone | tbc | safe }}</a>
+    </div>
+  </div>
+</section>
+{%- endmacro %}

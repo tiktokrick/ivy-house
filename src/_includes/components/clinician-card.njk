@@ -1,0 +1,15 @@
+{% from "components/placeholder.njk" import placeholder %}
+{% macro clinicianCard(item) -%}
+{%- set d = item.data -%}
+<article class="clinician-card">
+  <a class="clinician-card__media" href="{{ item.url }}" tabindex="-1" aria-hidden="true">
+    {%- if d.photo %}<img src="{{ d.photo }}" alt="" sizes="(min-width: 60rem) 25vw, 90vw">{% else %}{{ placeholder(d.name, "4/5") }}{% endif %}
+  </a>
+  <div class="clinician-card__body">
+    <h3 class="clinician-card__name"><a href="{{ item.url }}">{{ d.name }}</a></h3>
+    <p class="clinician-card__role">{{ d.role }}</p>
+    <p class="clinician-card__gdc">GDC {{ d.gdc | tbc | safe }}</p>
+    {%- if d.summary %}<p class="clinician-card__summary">{{ d.summary }}</p>{% endif %}
+  </div>
+</article>
+{%- endmacro %}

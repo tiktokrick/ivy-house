@@ -1,0 +1,20 @@
+---
+layout: layouts/base.njk
+---
+{% from "components/breadcrumbs.njk" import breadcrumbs %}
+{% from "components/clinician-card.njk" import clinicianCard %}
+{% from "components/cta-band.njk" import ctaBand %}
+<div class="container">
+  {{ breadcrumbs(page.url | crumbs(collections.all)) }}
+  <header class="page-head">
+    <h1>{{ heading or title }}</h1>
+    {%- if lede %}<p class="page-head__lede">{{ lede }}</p>{% endif %}
+  </header>
+</div>
+<div class="container section--tight">
+  {{ content | safe }}
+  <div class="grid grid--3">
+    {%- for c in collections.clinicians %}{{ clinicianCard(c) }}{% endfor %}
+  </div>
+</div>
+{{ ctaBand(site) }}

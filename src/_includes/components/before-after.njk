@@ -1,0 +1,23 @@
+{% from "components/placeholder.njk" import placeholder %}
+{#- Before/after case. Only consented items reach this macro (see collections). -#}
+{% macro beforeAfter(item) -%}
+{%- set d = item.data -%}
+<figure class="before-after">
+  <div class="before-after__pair">
+    <div class="before-after__side">
+      {%- if d.before %}<img src="{{ d.before }}" alt="{{ d.beforeAlt or ('Before: ' + d.title) }}" sizes="(min-width: 60rem) 20vw, 50vw">{% else %}{{ placeholder("before, " + d.title, "1/1") }}{% endif %}
+      <span class="before-after__label">Before</span>
+    </div>
+    <div class="before-after__side">
+      {%- if d.after %}<img src="{{ d.after }}" alt="{{ d.afterAlt or ('After: ' + d.title) }}" sizes="(min-width: 60rem) 20vw, 50vw">{% else %}{{ placeholder("after, " + d.title, "1/1") }}{% endif %}
+      <span class="before-after__label">After</span>
+    </div>
+  </div>
+  <figcaption class="before-after__caption">
+    <span class="before-after__category">{{ d.categoryLabel or d.category }}</span>
+    <span class="before-after__title">{{ d.title }}</span>
+    {%- if d.summary %}<span class="before-after__summary">{{ d.summary }}</span>{% endif %}
+    <span class="before-after__consent">Real patient, shown with written consent. Results vary.</span>
+  </figcaption>
+</figure>
+{%- endmacro %}

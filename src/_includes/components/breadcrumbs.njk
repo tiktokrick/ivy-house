@@ -1,0 +1,11 @@
+{% macro breadcrumbs(trail) -%}
+{%- if trail.length > 1 %}
+<nav class="breadcrumbs" aria-label="Breadcrumb">
+  <ol>
+    {%- for c in trail %}
+    <li>{% if loop.last %}<span aria-current="page">{{ c.title }}</span>{% else %}<a href="{{ c.url }}">{{ c.title }}</a>{% endif %}</li>
+    {%- endfor %}
+  </ol>
+</nav>
+{%- endif %}
+{%- endmacro %}

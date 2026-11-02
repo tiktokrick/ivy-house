@@ -1,0 +1,8 @@
+---
+layout: layouts/page.njk
+---
+{% from "components/fee-table.njk" import feeTable %}
+{{ content | safe }}
+{{ feeTable(fees) }}
+<h2>Paying for your treatment</h2>
+<p>{{ fees.paymentOptions | tbc | safe }}</p>
