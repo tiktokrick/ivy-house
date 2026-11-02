@@ -1,0 +1,193 @@
+# Decap CMS configuration. Editors sign in with GitHub through Netlify's
+# OAuth provider (Netlify: Project configuration > Security > OAuth).
+backend:
+  name: github
+  repo: tiktokrick/ivy-house
+  branch: main
+  base_url: https://api.netlify.com
+  auth_endpoint: auth
+
+# Changes go to a pull request (with a Netlify deploy preview) before going live.
+publish_mode: editorial_workflow
+
+media_folder: content/img/uploads
+public_folder: /img/uploads
+
+locale: en
+
+collections:
+  - name: pages
+    label: Pages
+    files:
+      - label: "New patients"
+        name: "new-patients"
+        file: "content/new-patients.md"
+        fields: &pageFields
+          - { label: "Page title", name: "title", widget: string }
+          - { label: "Search description (max 155 characters)", name: "description", widget: text, pattern: ['^[\s\S]{0,155}$', "Keep it to 155 characters or fewer"] }
+          - { label: "Intro line", name: "lede", widget: string, required: false }
+          - { label: "Page text", name: "body", widget: markdown }
+      - label: "Maintenance"
+        name: "maintenance"
+        file: "content/maintenance.md"
+        fields: &categoryFields
+          - { label: "Page title", name: "title", widget: string }
+          - { label: "Main heading", name: "heading", widget: string }
+          - { label: "Search description (max 155 characters)", name: "description", widget: text, pattern: ['^[\s\S]{0,155}$', "Keep it to 155 characters or fewer"] }
+          - { label: "Intro line", name: "lede", widget: string, required: false }
+          - label: "Price guide"
+            name: "price"
+            widget: object
+            required: false
+            fields:
+              - { label: "Label", name: "label", widget: string }
+              - { label: "From price", name: "from", widget: string }
+          - label: "FAQs"
+            name: "faqs"
+            widget: list
+            required: false
+            summary: "{{fields.q}}"
+            fields:
+              - { label: "Question", name: "q", widget: string }
+              - { label: "Answer", name: "a", widget: text }
+          - { label: "Page text", name: "body", widget: markdown }
+      - { label: "Repair", name: "repair", file: "content/repair.md", fields: *categoryFields }
+      - { label: "Missing teeth", name: "missing-teeth", file: "content/missing-teeth/index.md", fields: *categoryFields }
+      - { label: "Dental implants", name: "dental-implants", file: "content/missing-teeth/dental-implants.md", fields: *categoryFields }
+      - { label: "About", name: "about", file: "content/about.md", fields: *pageFields }
+      - { label: "Fees page", name: "fees-page", file: "content/fees.md", fields: *pageFields }
+      - { label: "Infection control", name: "infection-control", file: "content/patient-information/infection-control.md", fields: *pageFields }
+      - { label: "Complaints", name: "complaints", file: "content/patient-information/complaints.md", fields: *pageFields }
+      - { label: "Privacy notice", name: "privacy", file: "content/patient-information/privacy.md", fields: *pageFields }
+      - { label: "Accessibility", name: "accessibility", file: "content/patient-information/accessibility.md", fields: *pageFields }
+
+  - name: team
+    label: Team
+    label_singular: Team member
+    folder: content/team
+    create: true
+    slug: "{{name}}"
+    summary: "{{name}} ({{role}})"
+    sortable_fields: ["order", "name"]
+    fields:
+      - { label: "Name", name: "name", widget: string, required: false, hint: "For the principal dentist, the name and GDC number come from Practice details." }
+      - { label: "Principal dentist", name: "principal", widget: boolean, default: false }
+      - { label: "Role", name: "role", widget: string }
+      - { label: "GDC number", name: "gdc", widget: string, required: false }
+      - { label: "Sort order", name: "order", widget: number, value_type: int, default: 10 }
+      - { label: "Photo", name: "photo", widget: image, required: false }
+      - { label: "Qualifications", name: "qualifications", widget: list, required: false }
+      - { label: "Interests", name: "interests", widget: list, required: false, hint: "Don't use the word 'specialist' unless the dentist is on a GDC specialist list." }
+      - { label: "Short summary (for cards)", name: "summary", widget: text, required: false }
+      - { label: "Profile", name: "body", widget: markdown }
+
+  - name: gallery
+    label: Smile gallery
+    label_singular: Case
+    folder: content/gallery
+    create: true
+    slug: "{{slug}}"
+    summary: "{{title}} | consent: {{consent}}"
+    fields:
+      - { label: "Title", name: "title", widget: string }
+      - { label: "Category", name: "category", widget: select, options: [{ label: "Dental implant", value: "implant" }, { label: "Repair", value: "repair" }, { label: "Restoration", value: "restoration" }] }
+      - { label: "Category label", name: "categoryLabel", widget: string, required: false }
+      - { label: "Sort order", name: "order", widget: number, value_type: int, default: 10 }
+      - { label: "Before photo", name: "before", widget: image }
+      - { label: "Before photo description", name: "beforeAlt", widget: string }
+      - { label: "After photo", name: "after", widget: image }
+      - { label: "After photo description", name: "afterAlt", widget: string }
+      - { label: "Short summary", name: "summary", widget: text, required: false }
+      - { label: "Written consent received for web use", name: "consent", widget: boolean, default: false, hint: "The case only appears on the site when this is ticked." }
+
+  - name: testimonials
+    label: Testimonials
+    label_singular: Testimonial
+    folder: content/testimonials
+    create: true
+    slug: "{{slug}}"
+    summary: "{{attribution}} | consent: {{consent}}"
+    fields:
+      - { label: "Attribution (e.g. initials)", name: "attribution", widget: string }
+      - { label: "Context", name: "context", widget: string, required: false }
+      - { label: "Sort order", name: "order", widget: number, value_type: int, default: 10 }
+      - { label: "Written consent received for web use", name: "consent", widget: boolean, default: false, hint: "The testimonial only appears on the site when this is ticked." }
+      - { label: "Testimonial", name: "body", widget: markdown }
+
+  - name: settings
+    label: Practice details
+    files:
+      - label: "Practice details"
+        name: "site"
+        file: "src/_data/site.json"
+        fields:
+          - { label: "Practice name", name: "name", widget: string }
+          - { label: "Website address", name: "domain", widget: hidden }
+          - { label: "Tagline", name: "tagline", widget: string }
+          - { label: "Year founded", name: "foundedYear", widget: string }
+          - { label: "Years label", name: "yearsLabel", widget: string }
+          - { label: "Accepting new patients", name: "acceptingNewPatients", widget: boolean }
+          - { label: "NHS", name: "nhs", widget: boolean }
+          - label: "Address"
+            name: "address"
+            widget: object
+            fields:
+              - { label: "Street", name: "street", widget: string }
+              - { label: "Town", name: "town", widget: string }
+              - { label: "County", name: "county", widget: string }
+              - { label: "Postcode", name: "postcode", widget: string }
+          - label: "Map coordinates"
+            name: "geo"
+            widget: object
+            fields:
+              - { label: "Latitude", name: "lat", widget: string }
+              - { label: "Longitude", name: "lng", widget: string }
+          - { label: "Phone", name: "phone", widget: string }
+          - { label: "Email", name: "email", widget: string }
+          - label: "Opening hours"
+            name: "hours"
+            widget: list
+            allow_add: false
+            summary: "{{fields.day}}: {{fields.opens}}–{{fields.closes}}"
+            fields:
+              - { label: "Day", name: "day", widget: string }
+              - { label: "Opens (HH:MM, or 'Closed')", name: "opens", widget: string }
+              - { label: "Closes (HH:MM)", name: "closes", widget: string }
+          - label: "CQC"
+            name: "cqc"
+            widget: object
+            fields:
+              - { label: "Rating", name: "rating", widget: string }
+              - { label: "Report link", name: "url", widget: string }
+              - { label: "Location ID", name: "locationId", widget: string }
+          - label: "Principal dentist"
+            name: "principal"
+            widget: object
+            fields:
+              - { label: "Name", name: "name", widget: string }
+              - { label: "GDC number", name: "gdc", widget: string }
+              - { label: "On a GDC specialist list", name: "specialistList", widget: select, options: ["[TBC]", "true", "false"], hint: "Only choose true once confirmed on the GDC register. This controls whether the word 'specialist' may appear anywhere on the site." }
+          - { label: "Parking and access", name: "parking", widget: text }
+          - { label: "Price range (schema)", name: "priceRange", widget: string }
+          - { label: "Areas served", name: "areaServed", widget: list }
+          - { label: "Analytics", name: "analytics", widget: hidden }
+          - { label: "Social", name: "social", widget: hidden }
+      - label: "Fees"
+        name: "fees"
+        file: "src/_data/fees.json"
+        fields:
+          - { label: "Intro", name: "intro", widget: text }
+          - { label: "Payment options", name: "paymentOptions", widget: text }
+          - label: "Fee groups"
+            name: "groups"
+            widget: list
+            summary: "{{fields.category}}"
+            fields:
+              - { label: "Category", name: "category", widget: string }
+              - label: "Treatments"
+                name: "items"
+                widget: list
+                summary: "{{fields.treatment}}: {{fields.from}}"
+                fields:
+                  - { label: "Treatment", name: "treatment", widget: string }
+                  - { label: "From price", name: "from", widget: string }
