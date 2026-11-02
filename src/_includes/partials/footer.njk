@@ -50,8 +50,8 @@
       </p>
       <p>
         <strong>GDC registration:</strong>
-        {%- for c in collections.clinicians %}
-        {{ c.data.name }}, GDC {{ c.data.gdc | tbc | safe }}{% if not loop.last %};{% endif %}
+        {%- for c in collections.clinicians | gdcRegistered %}
+        {{ c.data.name | tbc | safe }} ({{ c.data.role }}), GDC {{ c.data.gdc | tbc | safe }}{% if not loop.last %};{% endif %}
         {%- endfor %}
       </p>
       <p class="site-footer__disclaimer">Treatment results vary. All before-and-after images and testimonials are of real patients and are used with their written consent.</p>

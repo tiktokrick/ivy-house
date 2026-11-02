@@ -13,7 +13,7 @@ layout: layouts/base.njk
 </div>
 <div class="container section--tight">
   {{ content | safe }}
-  <div class="grid grid--3">
+  <div class="grid grid--team">
     {%- for c in collections.clinicians %}{{ clinicianCard(c) }}{% endfor %}
   </div>
 </div>

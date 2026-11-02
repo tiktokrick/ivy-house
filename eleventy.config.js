@@ -53,10 +53,12 @@ export default function (eleventyConfig) {
     category ? items.filter((i) => i.data.category === category) : items,
   );
   eleventyConfig.addFilter("head", (items, n) => items.slice(0, n));
+  eleventyConfig.addFilter("gdcRegistered", (items) => items.filter((i) => i.data.gdc));
   eleventyConfig.addFilter("isoDate", (d) => new Date(d).toISOString().slice(0, 10));
 
   // Breadcrumb trail built from URL segments and each page's own title.
   eleventyConfig.addFilter("crumbs", (url, all) => {
+    if (typeof url !== "string") return []; // permalink: false entries
     const titleFor = (u) => all.find((p) => p.url === u)?.data.title;
     const parts = url.split("/").filter(Boolean);
     const trail = [{ title: "Home", url: "/" }];

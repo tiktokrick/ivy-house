@@ -17,11 +17,22 @@
   letter-spacing: var(--label-tracking); text-transform: uppercase; color: var(--pink-text);
 }
 
+/* Team grid: two across on phones so a full team doesn't become a long scroll. */
+.grid--team { grid-template-columns: repeat(auto-fill, minmax(min(100%, 10rem), 1fr)); gap: var(--space-s); }
+@media (min-width: 48rem) {
+  .grid--team { grid-template-columns: repeat(auto-fill, minmax(14rem, 1fr)); gap: var(--space-m); }
+}
+
 /* Clinician cards */
 .clinician-card { background: var(--paper); display: flex; flex-direction: column; }
-.clinician-card__media { display: block; }
-.clinician-card__body { padding: var(--space-m); }
-.clinician-card__name { font-size: var(--h3); margin-bottom: var(--space-2xs); }
+.clinician-card__media { display: block; text-decoration: none; color: inherit; }
+.clinician-card__body { padding: var(--space-s); }
+@media (min-width: 48rem) {
+  .clinician-card__body { padding: var(--space-m); }
+}
+.clinician-card .placeholder__label { font-size: 0.6875rem; letter-spacing: 0.08em; }
+.clinician-card__summary { font-size: var(--text-sm); }
+.clinician-card__name { font-size: clamp(1.375rem, 1.2rem + 0.6vw, 1.875rem); margin-bottom: var(--space-2xs); }
 .clinician-card__name a { color: var(--ink); text-decoration: none; }
 .clinician-card__name a:hover { color: var(--pink-text); }
 .clinician-card__role { margin: 0; font-weight: var(--weight-medium); }

@@ -47,7 +47,7 @@ home:
       - when: Today
         what: Dr Yusef Ali leads the practice, welcoming new patients
   team:
-    eyebrow: Your dentists
+    eyebrow: Your team
     heading: The people who'll look after you
   testimonials:
     eyebrow: In their words
