@@ -1,0 +1,9 @@
+[
+  { "label": "Maintenance", "url": "/maintenance/" },
+  { "label": "Repair", "url": "/repair/" },
+  { "label": "Missing teeth", "url": "/missing-teeth/" },
+  { "label": "Smile gallery", "url": "/smile-gallery/" },
+  { "label": "About", "url": "/about/" },
+  { "label": "Team", "url": "/team/" },
+  { "label": "Contact", "url": "/contact/" }
+]

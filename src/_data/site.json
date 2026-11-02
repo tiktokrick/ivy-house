@@ -1,0 +1,29 @@
+{
+  "name": "Ivy House Dental Practice",
+  "domain": "https://thanetdentist.com",
+  "tagline": "Private dentistry in Ramsgate. Family-run for 60 years.",
+  "foundedYear": "[TBC]",
+  "yearsLabel": "60 years",
+  "acceptingNewPatients": true,
+  "nhs": false,
+  "address": { "street": "[TBC]", "town": "Ramsgate", "county": "Kent", "postcode": "[TBC]" },
+  "geo": { "lat": "[TBC]", "lng": "[TBC]" },
+  "phone": "[TBC]",
+  "email": "[TBC]@thanetdentist.com",
+  "hours": [
+    { "day": "Monday", "opens": "[TBC]", "closes": "[TBC]" },
+    { "day": "Tuesday", "opens": "[TBC]", "closes": "[TBC]" },
+    { "day": "Wednesday", "opens": "[TBC]", "closes": "[TBC]" },
+    { "day": "Thursday", "opens": "[TBC]", "closes": "[TBC]" },
+    { "day": "Friday", "opens": "[TBC]", "closes": "[TBC]" },
+    { "day": "Saturday", "opens": "[TBC]", "closes": "[TBC]" },
+    { "day": "Sunday", "opens": "[TBC]", "closes": "[TBC]" }
+  ],
+  "cqc": { "rating": "[TBC]", "url": "[TBC]", "locationId": "[TBC]" },
+  "principal": { "name": "Dr Yusef Ali", "gdc": "[TBC]", "specialistList": "[TBC]" },
+  "parking": "[TBC]",
+  "priceRange": "[TBC]",
+  "areaServed": ["Ramsgate", "Broadstairs", "Margate", "Thanet"],
+  "analytics": { "plausibleDomain": "thanetdentist.com" },
+  "social": {}
+}
