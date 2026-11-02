@@ -4,6 +4,7 @@ import { eleventyImageTransformPlugin } from "@11ty/eleventy-img";
 import { bundleCss } from "./lib/css.js";
 import { checkOutput } from "./lib/compliance.js";
 import * as schema from "./lib/schema.js";
+import { isLive } from "./src/_data/build.js";
 
 const isTbc = (v) => typeof v === "string" && v.includes("[TBC");
 const escapeHtml = (s) =>
@@ -90,7 +91,7 @@ export default function (eleventyConfig) {
   // ---- Guard rails ---------------------------------------------------------
   eleventyConfig.on("eleventy.after", ({ dir }) => {
     const site = JSON.parse(readFileSync("src/_data/site.json", "utf8"));
-    const problems = checkOutput(dir.output, { site, isProduction: process.env.CONTEXT === "production" });
+    const problems = checkOutput(dir.output, { site, isProduction: isLive() });
     if (problems.length) {
       throw new Error(`Compliance check failed:\n  - ${problems.join("\n  - ")}`);
     }

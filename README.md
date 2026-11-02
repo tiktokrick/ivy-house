@@ -43,9 +43,9 @@ The build fails if:
 
 - any page uses "specialist" while `site.json → principal.specialistList` isn't `"true"` (GDC rule)
 - any page uses an unverifiable claim: best, painless, guaranteed, leading, No.1 (GDC/CAP). Legitimate phrases are allow-listed in `lib/compliance.js`
-- a **production** build still contains `[TBC]`
+- a **live** build still contains `[TBC]`
 
-Outside production, `[TBC]` values are highlighted in yellow so gaps show up in review. Previews are also `noindex`, and their `robots.txt` blocks crawlers.
+"Live" means Netlify's production context **and** the project's primary URL is `site.json → domain` (`https://thanetdentist.com`). Until the domain is switched over, production deploys on `ivy-house-dental.netlify.app` behave like previews: `[TBC]` values are highlighted in yellow, pages are `noindex`, `robots.txt` blocks crawlers and analytics is off.
 
 Before/after cases and testimonials appear only when their file has `consent: true`.
 
