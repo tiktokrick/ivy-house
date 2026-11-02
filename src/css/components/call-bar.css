@@ -1,0 +1,20 @@
+/* Sticky Call / Callback bar on phones (BRIEF §4). */
+.call-bar {
+  position: fixed; inset: auto 0 0 0; z-index: 60;
+  display: grid; grid-template-columns: 1fr 1fr;
+  height: var(--call-bar-height);
+  background: var(--ink); border-top: 1px solid var(--line-on-dark);
+}
+.call-bar__link {
+  display: flex; align-items: center; justify-content: center;
+  color: var(--ivory); text-decoration: none;
+  font-size: var(--text-sm); font-weight: var(--weight-medium); letter-spacing: var(--label-tracking); text-transform: uppercase;
+}
+.call-bar__link:hover { color: var(--ivory); }
+.call-bar__link--accent { background: var(--pink); color: var(--paper); }
+.call-bar__link--accent:hover { background: var(--pink-dark); color: var(--paper); }
+.call-bar :focus-visible { outline-color: var(--paper); outline-offset: -4px; }
+
+@media (min-width: 48rem) {
+  .call-bar { display: none; }
+}

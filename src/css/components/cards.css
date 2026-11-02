@@ -1,0 +1,37 @@
+/* Problem cards ("How can we help?") */
+.problem-card {
+  position: relative; display: flex; flex-direction: column;
+  padding: var(--space-l) var(--space-m) var(--space-m);
+  background: var(--paper); border-top: 3px solid var(--ink);
+  transition: border-color var(--transition);
+}
+.problem-card:hover, .problem-card:focus-within { border-top-color: var(--pink); }
+.problem-card__index { font-family: var(--font-display); font-size: 1.25rem; color: var(--stone); margin-bottom: var(--space-s); }
+.problem-card__title { font-size: var(--h3); }
+.problem-card__title a { color: var(--ink); text-decoration: none; }
+/* Whole card is clickable via the heading link. */
+.problem-card__title a::after { content: ""; position: absolute; inset: 0; }
+.problem-card__text { color: var(--stone); flex: 1; }
+.problem-card__more {
+  margin: 0; font-size: var(--text-xs); font-weight: var(--weight-medium);
+  letter-spacing: var(--label-tracking); text-transform: uppercase; color: var(--pink-text);
+}
+
+/* Clinician cards */
+.clinician-card { background: var(--paper); display: flex; flex-direction: column; }
+.clinician-card__media { display: block; }
+.clinician-card__body { padding: var(--space-m); }
+.clinician-card__name { font-size: var(--h3); margin-bottom: var(--space-2xs); }
+.clinician-card__name a { color: var(--ink); text-decoration: none; }
+.clinician-card__name a:hover { color: var(--pink-text); }
+.clinician-card__role { margin: 0; font-weight: var(--weight-medium); }
+.clinician-card__gdc { margin: 0 0 var(--space-s); font-size: var(--text-sm); color: var(--stone); }
+.clinician-card__summary { margin: 0; color: var(--stone); }
+
+/* Testimonials */
+.testimonial-card { margin: 0; padding: var(--space-l) var(--space-m); background: var(--ivory); border-left: 3px solid var(--pink); }
+.testimonial-card__quote { margin: 0 0 var(--space-m); font-family: var(--font-display); font-size: 1.375rem; line-height: 1.35; }
+.testimonial-card__quote p { margin: 0; }
+.testimonial-card__cite { display: flex; flex-direction: column; font-size: var(--text-sm); }
+.testimonial-card__name { font-weight: var(--weight-medium); }
+.testimonial-card__context { color: var(--stone); }

@@ -1,0 +1,59 @@
+/* Design tokens (BRIEF §5). Colours are placeholders until brand files arrive.
+   Contrast notes (WCAG AA):
+   - --pink on --ivory or --ink is about 4.2:1: fine for buttons, rules and large
+     text, not for body-size text. Use --pink-text / --pink-on-dark for links.
+   - White on --pink is 4.6:1, so pink buttons carry white labels. */
+:root {
+  /* Colour */
+  --ink: #0e0e0e;
+  --ink-soft: #1c1a19;
+  --ivory: #f6f2ec;
+  --paper: #ffffff;
+  --pink: #e0186c;          /* [TBC from brand files] accent fills */
+  --pink-dark: #b01255;     /* hover/active */
+  --pink-text: #b01255;     /* links and accents on light backgrounds */
+  --pink-on-dark: #f2559a;  /* links and accents on ink */
+  --stone: #6b6b6b;         /* secondary text on light */
+  --stone-on-dark: #b5afa6; /* secondary text on ink */
+  --line: #d9d2c7;
+  --line-on-dark: #3a3633;
+  --placeholder: #d6cdbf;
+  --placeholder-dark: #2a2725;
+
+  /* Type: swap families here if the practice supplies a preferred font. */
+  --font-display: "Cormorant Garamond", "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+  --font-body: "Jost", "Avenir Next", "Segoe UI", system-ui, sans-serif;
+  --weight-light: 300;
+  --weight-regular: 400;
+  --weight-medium: 500;
+  --weight-display: 500;
+  --weight-display-strong: 600;
+
+  --text-base: clamp(1.0625rem, 1rem + 0.25vw, 1.125rem); /* 17–18px */
+  --text-lg: 1.25rem;
+  --text-sm: 0.9375rem;
+  --text-xs: 0.8125rem;
+  --leading: 1.6;
+  --h1: clamp(2.5rem, 1.6rem + 3.6vw, 4rem);
+  --h2: clamp(2rem, 1.5rem + 2vw, 2.875rem);
+  --h3: clamp(1.5rem, 1.3rem + 0.8vw, 1.875rem);
+  --label-tracking: 0.06em;
+
+  /* Space and layout */
+  --space-2xs: 0.25rem;
+  --space-xs: 0.5rem;
+  --space-s: 1rem;
+  --space-m: 1.5rem;
+  --space-l: 2.5rem;
+  --space-xl: 4rem;
+  --space-2xl: clamp(4rem, 3rem + 5vw, 7.5rem);
+  --gutter: clamp(1rem, 0.5rem + 2.5vw, 2.5rem);
+  --measure: 66ch;
+  --container: 76rem;
+  --radius: 2px;
+  --header-height: 4.5rem;
+  --call-bar-height: 3.5rem;
+
+  --focus-ring: 3px solid var(--pink-text);
+  --transition: 160ms ease;
+}

@@ -1,0 +1,26 @@
+.callback-form { display: grid; gap: var(--space-m); max-width: 34rem; margin-top: var(--space-m); }
+.field { display: grid; gap: var(--space-2xs); margin: 0; border: 0; padding: 0; min-width: 0; }
+.field label, .field legend { font-weight: var(--weight-regular); }
+.field legend { padding: 0; margin-bottom: var(--space-2xs); }
+.field__optional, .field__hint { color: var(--stone); font-size: var(--text-sm); margin: 0; }
+.on-dark .field__optional, .on-dark .field__hint { color: var(--stone-on-dark); }
+
+.field input[type="text"], .field input[type="tel"], .field textarea {
+  width: 100%; min-height: 3rem; padding: 0.7rem 0.9rem;
+  font: inherit; color: var(--ink); background: var(--paper);
+  border: 1px solid var(--stone); border-radius: var(--radius);
+}
+.field textarea { min-height: 6rem; resize: vertical; }
+.field input:focus-visible, .field textarea:focus-visible { outline: var(--focus-ring); outline-offset: 1px; border-color: var(--ink); }
+.on-dark .field input, .on-dark .field textarea { border-color: var(--paper); }
+
+.field--choices { display: flex; flex-wrap: wrap; gap: var(--space-xs) var(--space-m); }
+.field--choices legend { width: 100%; }
+.choice { display: inline-flex; align-items: flex-start; gap: var(--space-xs); cursor: pointer; }
+.choice input { width: 1.25rem; height: 1.25rem; margin: 0.15rem 0 0; accent-color: var(--pink); flex: none; }
+.field--consent .choice { font-size: var(--text-sm); }
+
+.callback-form .button { justify-self: start; }
+
+/* Honeypot: hidden from people, visible to bots. */
+.callback-form__honeypot { position: absolute; left: -10000px; width: 1px; height: 1px; overflow: hidden; }
