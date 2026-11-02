@@ -1,0 +1,50 @@
+[build]
+  command = "npm run build"
+  publish = "_site"
+
+[build.environment]
+  NODE_VERSION = "24"
+
+# ---- Domains (BRIEF §3) -------------------------------------------------------
+# www.thanetdentist.com -> apex is handled by Netlify's primary-domain setting.
+# Every alias must also be added as a domain alias in the Netlify UI.
+[[redirects]]
+  from = "https://thanetdentist.co.uk/*"
+  to = "https://thanetdentist.com/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "https://www.thanetdentist.co.uk/*"
+  to = "https://thanetdentist.com/:splat"
+  status = 301
+  force = true
+
+# [TBC] Ivy House and town domains: add one block per domain once purchased.
+
+# ---- Security headers ---------------------------------------------------------
+# The Content-Security-Policy is set per page in a <meta> tag, because /admin
+# (Decap CMS) needs a looser policy than the public site.
+[[headers]]
+  for = "/*"
+  [headers.values]
+    Strict-Transport-Security = "max-age=63072000; includeSubDomains"
+    X-Content-Type-Options = "nosniff"
+    X-Frame-Options = "DENY"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=(), payment=(), usb=(), interest-cohort=()"
+
+[[headers]]
+  for = "/css/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/fonts/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/img/*"
+  [headers.values]
+    Cache-Control = "public, max-age=2592000"
