@@ -27,9 +27,9 @@ collections:
           - { label: "Search description (max 155 characters)", name: "description", widget: text, pattern: ['^[\s\S]{0,155}$', "Keep it to 155 characters or fewer"] }
           - { label: "Intro line", name: "lede", widget: string, required: false }
           - { label: "Page text", name: "body", widget: markdown }
-      - label: "Maintenance"
-        name: "maintenance"
-        file: "content/maintenance.md"
+      - label: "Family dentistry"
+        name: "family-dentistry"
+        file: "content/family-dentistry.md"
         fields: &categoryFields
           - { label: "Page title", name: "title", widget: string }
           - { label: "Main heading", name: "heading", widget: string }
@@ -53,13 +53,46 @@ collections:
           - { label: "Page text", name: "body", widget: markdown }
       - { label: "Repair", name: "repair", file: "content/repair.md", fields: *categoryFields }
       - { label: "Missing teeth", name: "missing-teeth", file: "content/missing-teeth/index.md", fields: *categoryFields }
-      - { label: "Dental implants", name: "dental-implants", file: "content/missing-teeth/dental-implants.md", fields: *categoryFields }
+      - { label: "Older patients", name: "older-patients", file: "content/family-dentistry/older-patients.md", fields: *categoryFields }
+      - { label: "Cosmetic dentistry", name: "cosmetic-dentistry", file: "content/cosmetic-dentistry.md", fields: *categoryFields }
       - { label: "About", name: "about", file: "content/about.md", fields: *pageFields }
       - { label: "Fees page", name: "fees-page", file: "content/fees.md", fields: *pageFields }
       - { label: "Infection control", name: "infection-control", file: "content/patient-information/infection-control.md", fields: *pageFields }
       - { label: "Complaints", name: "complaints", file: "content/patient-information/complaints.md", fields: *pageFields }
       - { label: "Privacy notice", name: "privacy", file: "content/patient-information/privacy.md", fields: *pageFields }
       - { label: "Accessibility", name: "accessibility", file: "content/patient-information/accessibility.md", fields: *pageFields }
+
+  # Implant pages (BRIEF §6A). Every page needs a short answer, FAQs and a review date.
+  - name: implants
+    label: Dental implant pages
+    files:
+      - label: "Implants: overview"
+        name: "implants-hub"
+        file: "content/dental-implants/index.md"
+        fields: &implantFields
+          - { label: "Page title", name: "title", widget: string }
+          - { label: "Search title (max 60 characters)", name: "metaTitle", widget: string, pattern: ['^.{0,60}$', "Keep it to 60 characters or fewer"] }
+          - { label: "Main heading", name: "heading", widget: string }
+          - { label: "Search description (max 155 characters)", name: "description", widget: text, pattern: ['^[\s\S]{0,155}$', "Keep it to 155 characters or fewer"] }
+          - { label: "Intro line", name: "lede", widget: string, required: false }
+          - { label: "Short answer (40–60 words)", name: "answer", widget: text, hint: "Answers the page's main question on its own, with a figure where possible. Search engines and AI answers quote this." }
+          - { label: "Last clinically reviewed (e.g. 20 November 2026)", name: "lastReviewed", widget: string }
+          - label: "FAQs"
+            name: "faqs"
+            widget: list
+            required: false
+            summary: "{{fields.q}}"
+            fields:
+              - { label: "Question", name: "q", widget: string }
+              - { label: "Answer (start with the direct answer)", name: "a", widget: text }
+          - { label: "Page text", name: "body", widget: markdown }
+      - { label: "Implants: how it works", name: "implants-process", file: "content/dental-implants/process.md", fields: *implantFields }
+      - { label: "Implants: cost", name: "implants-cost", file: "content/dental-implants/cost.md", fields: *implantFields }
+      - { label: "Implants: single tooth", name: "implants-single", file: "content/dental-implants/single-tooth.md", fields: *implantFields }
+      - { label: "Implants: multiple teeth", name: "implants-multiple", file: "content/dental-implants/multiple-teeth.md", fields: *implantFields }
+      - { label: "Implants: full arch", name: "implants-full-arch", file: "content/dental-implants/full-arch.md", fields: *implantFields }
+      - { label: "Implants: am I suitable?", name: "implants-suitable", file: "content/dental-implants/am-i-suitable.md", fields: *implantFields }
+      - { label: "Implants: patient stories", name: "implants-stories", file: "content/dental-implants/patient-stories.md", fields: *implantFields }
 
   - name: team
     label: Team
@@ -77,6 +110,11 @@ collections:
       - { label: "Sort order", name: "order", widget: number, value_type: int, default: 10 }
       - { label: "Photo", name: "photo", widget: image, required: false }
       - { label: "Qualifications", name: "qualifications", widget: list, required: false }
+      - { label: "Implant training", name: "implantTraining", widget: list, required: false }
+      - { label: "Years placing implants", name: "yearsPlacingImplants", widget: string, required: false }
+      - { label: "Implants placed (only if it can be evidenced)", name: "implantsPlaced", widget: string, required: false }
+      - { label: "Implant system", name: "implantSystem", widget: string, required: false }
+      - { label: "Professional memberships", name: "memberships", widget: list, required: false }
       - { label: "Interests", name: "interests", widget: list, required: false, hint: "Don't use the word 'specialist' unless the dentist is on a GDC specialist list." }
       - { label: "Short summary (for cards)", name: "summary", widget: text, required: false }
       - { label: "Profile", name: "body", widget: markdown }
@@ -90,7 +128,7 @@ collections:
     summary: "{{title}} | consent: {{consent}}"
     fields:
       - { label: "Title", name: "title", widget: string }
-      - { label: "Category", name: "category", widget: select, options: [{ label: "Dental implant", value: "implant" }, { label: "Repair", value: "repair" }, { label: "Restoration", value: "restoration" }] }
+      - { label: "Category", name: "category", widget: select, options: [{ label: "Dental implant", value: "implant" }, { label: "Repair", value: "repair" }, { label: "Restoration", value: "restoration" }, { label: "Cosmetic", value: "cosmetic" }] }
       - { label: "Category label", name: "categoryLabel", widget: string, required: false }
       - { label: "Sort order", name: "order", widget: number, value_type: int, default: 10 }
       - { label: "Before photo", name: "before", widget: image }
@@ -167,6 +205,69 @@ collections:
               - { label: "Name", name: "name", widget: string }
               - { label: "GDC number", name: "gdc", widget: string }
               - { label: "On a GDC specialist list", name: "specialistList", widget: select, options: ["[TBC]", "true", "false"], hint: "Only choose true once confirmed on the GDC register. This controls whether the word 'specialist' may appear anywhere on the site." }
+          - label: "Dental implants"
+            name: "implants"
+            widget: object
+            collapsed: true
+            fields:
+              - { label: "Who places implants", name: "placedBy", widget: string }
+              - { label: "Implant system", name: "system", widget: string }
+              - { label: "Years placing implants", name: "yearsPlacing", widget: string }
+              - { label: "Single implant from-price (e.g. £2,500)", name: "fromPriceSingle", widget: string }
+              - { label: "What the from-price includes", name: "priceIncludes", widget: text }
+              - { label: "Consultation fee", name: "consultationFee", widget: string }
+              - { label: "Typical timeline (months)", name: "timelineMonths", widget: string }
+              - { label: "Typical number of visits", name: "typicalVisits", widget: string }
+              - { label: "3D imaging", name: "imaging", widget: string }
+              - { label: "Sedation", name: "sedation", widget: string }
+              - label: "Finance"
+                name: "finance"
+                widget: object
+                fields:
+                  - { label: "Finance offered", name: "offered", widget: select, options: ["[TBC]", "true", "false"] }
+                  - { label: "FCA authorised or appointed representative", name: "fcaAuthorised", widget: select, options: ["[TBC]", "true", "false"], hint: "Only choose true once confirmed. Until then the site can't mention credit or monthly payments." }
+              - { label: "Patient stories page published", name: "storiesPublished", widget: boolean, default: false }
+              - label: "Services offered (false removes the page and links)"
+                name: "services"
+                widget: object
+                fields:
+                  - { label: "Single tooth", name: "singleTooth", widget: boolean, default: true }
+                  - { label: "Multiple teeth", name: "multipleTeeth", widget: select, options: ["[TBC]", "true", "false"] }
+                  - { label: "Full arch", name: "fullArch", widget: select, options: ["[TBC]", "true", "false"] }
+                  - { label: "Bone grafting", name: "boneGrafting", widget: select, options: ["[TBC]", "true", "false"] }
+                  - { label: "Same-day teeth", name: "sameDayTeeth", widget: select, options: ["[TBC]", "true", "false"] }
+                  - { label: "Accepts referrals", name: "acceptsReferrals", widget: select, options: ["[TBC]", "true", "false"] }
+          - label: "Cosmetic treatments offered"
+            name: "cosmetic"
+            widget: object
+            collapsed: true
+            fields:
+              - { label: "Whitening", name: "whitening", widget: select, options: ["[TBC]", "true", "false"] }
+              - { label: "Bonding", name: "bonding", widget: select, options: ["[TBC]", "true", "false"] }
+              - { label: "Veneers", name: "veneers", widget: select, options: ["[TBC]", "true", "false"] }
+              - { label: "Cosmetic crowns", name: "cosmeticCrowns", widget: select, options: ["[TBC]", "true", "false"] }
+              - { label: "Straightening", name: "straightening", widget: select, options: ["[TBC]", "true", "false"] }
+          - label: "Older patients"
+            name: "olderPatients"
+            widget: object
+            collapsed: true
+            fields:
+              - { label: "Longer appointments", name: "longerAppointments", widget: string }
+              - { label: "Carers and family welcome in the surgery", name: "carersWelcome", widget: string }
+              - { label: "Step-free access", name: "stepFreeAccess", widget: string }
+              - { label: "Home visits", name: "homeVisits", widget: string }
+              - { label: "Dementia training", name: "dementiaTraining", widget: string }
+              - { label: "Drop-off", name: "dropOff", widget: string }
+              - { label: "Joint bookings (parent and adult child)", name: "jointBookings", widget: string }
+              - { label: "Reminders to family (with consent)", name: "familyReminders", widget: string }
+              - { label: "Payment by a family member", name: "thirdPartyPayment", widget: string }
+          - label: "Children"
+            name: "children"
+            widget: object
+            collapsed: true
+            fields:
+              - { label: "Age to start check-ups", name: "fromAge", widget: string }
+              - { label: "Family bookings", name: "familyBookings", widget: string }
           - { label: "Parking and access", name: "parking", widget: text }
           - { label: "Price range (schema)", name: "priceRange", widget: string }
           - { label: "Areas served", name: "areaServed", widget: list }

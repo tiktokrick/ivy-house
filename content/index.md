@@ -2,7 +2,7 @@
 layout: layouts/home.njk
 title: Home
 metaTitle: Private Dentist in Ramsgate | Ivy House Dental Practice
-description: Ivy House is a private, family-run dental practice in Ramsgate, Kent. Check-ups, same-day repairs and dental implants. Welcoming new patients.
+description: Ivy House is a private, family-run dental practice in Ramsgate. Family check-ups, same-day repairs and dental implants. Welcoming new patients.
 cta: false
 home:
   hero:
@@ -21,17 +21,50 @@ home:
     heading: Tell us what's wrong. We'll take it from there.
     cards:
       - index: "01"
-        title: Keep your teeth healthy
-        url: /maintenance/
-        text: Regular check-ups and hygiene visits that catch problems early, for you and your children.
+        title: Check-ups for the whole family
+        url: /family-dentistry/
+        text: Regular check-ups for you, your children and your parents.
+        photoLabel: Three generations together
       - index: "02"
         title: Fix a broken tooth or lost filling
         url: /repair/
         text: Chipped, cracked or lost a filling? We can often repair it the same day.
       - index: "03"
-        title: Replace missing teeth
-        url: /missing-teeth/
-        text: Implants, bridges and dentures that look natural and let you eat with confidence again.
+        title: Replace or improve your teeth
+        text: Replace missing teeth, update old work or improve your smile.
+        links:
+          - label: Dental implants
+            url: /dental-implants/
+          - label: Improve your smile
+            url: /cosmetic-dentistry/
+  implants:
+    id: implants
+    eyebrow: Dental implants
+    heading: "I'm Yusef, and I place every implant myself. [TBC: confirm]"
+    photoLabel: Yusef planning an implant case
+    points:
+      - The same dentist from your first consultation to your final tooth.
+      - Clear, written costs before you start.
+      - "Single implants from {fromPriceSingle}, including the crown."
+    links:
+      - label: How it works
+        url: /dental-implants/process/
+      - label: Costs
+        url: /dental-implants/cost/
+      - label: Am I suitable?
+        url: /dental-implants/am-i-suitable/
+    cta:
+      label: Book an implant consultation
+      url: /dental-implants/#callback
+  olderPatients:
+    id: older-patients
+    eyebrow: Family dentistry
+    heading: Looking after a parent's teeth?
+    photoLabel: An older parent with their adult son or daughter
+    text: "[TBC: confirm each point] Book for your mum or dad, come into the appointment with them, talk the plan through together and pay on their behalf. We take our time, and they'll see the same dentist each visit."
+    cta:
+      label: Bringing a parent to the dentist
+      url: /family-dentistry/older-patients/
   heritage:
     eyebrow: Our story
     heading: The same family. The same front door. For 60 years.

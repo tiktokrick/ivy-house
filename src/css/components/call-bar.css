@@ -18,3 +18,4 @@
 @media (min-width: 48rem) {
   .call-bar { display: none; }
 }
+.call-bar__link--long { font-size: var(--text-xs); letter-spacing: 0.03em; padding-inline: var(--space-xs); text-align: center; }

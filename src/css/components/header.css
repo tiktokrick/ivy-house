@@ -30,6 +30,24 @@
 }
 .site-nav a:hover, .site-nav a[aria-current] { border-bottom-color: var(--pink); color: var(--ivory); }
 
+/* Dropdown groups (Dental implants, Treatments) on native <details>. */
+.site-nav__summary {
+  display: inline-flex; align-items: center; gap: 0.4em; padding-block: var(--space-xs);
+  list-style: none; cursor: pointer; color: var(--ivory);
+  font-size: var(--text-sm); font-weight: var(--weight-regular); letter-spacing: 0.02em;
+  border-bottom: 2px solid transparent;
+}
+.site-nav__summary::-webkit-details-marker { display: none; }
+.site-nav__summary::after {
+  content: ""; width: 0.4em; height: 0.4em; margin-top: -0.2em;
+  border-right: 1px solid currentColor; border-bottom: 1px solid currentColor; transform: rotate(45deg);
+  transition: transform var(--transition);
+}
+.site-nav__details[open] > .site-nav__summary::after { transform: rotate(-135deg); margin-top: 0.2em; }
+.site-nav__summary:hover, .site-nav__summary.is-current { border-bottom-color: var(--pink); }
+.site-nav__sub { list-style: none; margin: 0; padding: 0 0 var(--space-xs) var(--space-s); }
+.site-nav__sub a, .on-dark .site-nav__sub a { padding-block: var(--space-2xs); }
+
 .site-header__actions { display: none; align-items: center; gap: var(--space-m); margin-left: auto; }
 .site-header__phone, .on-dark .site-header__phone {
   color: var(--ivory); text-decoration: none; font-weight: var(--weight-medium); letter-spacing: 0.02em;
@@ -55,7 +73,9 @@
   .has-js .site-nav { display: none; }
   .has-js.is-open .site-nav { display: block; padding-bottom: var(--space-s); }
   .has-js.is-open .site-nav__list { flex-direction: column; gap: 0; }
-  .has-js.is-open .site-nav a { font-size: var(--text-lg); font-family: var(--font-display); padding-block: var(--space-xs); }
+  .has-js.is-open .site-nav a,
+  .has-js.is-open .site-nav__summary { font-size: var(--text-lg); font-family: var(--font-display); padding-block: var(--space-xs); }
+  .has-js.is-open .site-nav__sub a { font-size: var(--text-base); font-family: var(--font-body); }
 }
 
 @media (min-width: 48rem) {
@@ -68,4 +88,11 @@
   .site-nav { order: 0; flex-basis: auto; margin-left: auto; }
   .site-header__actions { margin-left: var(--space-s); }
   .nav-toggle, .nav-toggle:not([hidden]) { display: none; }
+  .site-nav__group { position: relative; }
+  .site-nav__sub {
+    position: absolute; top: 100%; left: calc(-1 * var(--space-s)); z-index: 60;
+    min-width: 15rem; padding: var(--space-xs) var(--space-s);
+    background: var(--ink); border: 1px solid var(--line-on-dark); border-top: 2px solid var(--pink);
+  }
+  .site-nav__sub a { display: block; }
 }

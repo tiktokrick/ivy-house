@@ -3,27 +3,84 @@
   "paymentOptions": "[TBC]",
   "groups": [
     {
-      "category": "Maintenance",
+      "category": "Dental implants",
       "items": [
-        { "treatment": "New patient examination", "from": "[TBC]" },
-        { "treatment": "Check-up", "from": "[TBC]" },
-        { "treatment": "Hygienist appointment", "from": "[TBC]" }
+        {
+          "treatment": "Implant consultation",
+          "from": "[TBC]"
+        },
+        {
+          "treatment": "Single dental implant (including crown)",
+          "from": "[TBC]"
+        },
+        {
+          "treatment": "3D scan",
+          "from": "[TBC]"
+        },
+        {
+          "treatment": "Bone graft, if needed",
+          "from": "[TBC]"
+        }
+      ]
+    },
+    {
+      "category": "Family dentistry",
+      "items": [
+        {
+          "treatment": "New patient examination",
+          "from": "[TBC]"
+        },
+        {
+          "treatment": "Check-up",
+          "from": "[TBC]"
+        },
+        {
+          "treatment": "Hygienist appointment",
+          "from": "[TBC]"
+        },
+        {
+          "treatment": "Children's check-up",
+          "from": "[TBC]"
+        }
       ]
     },
     {
       "category": "Repair",
       "items": [
-        { "treatment": "Urgent appointment", "from": "[TBC]" },
-        { "treatment": "White filling", "from": "[TBC]" },
-        { "treatment": "Crown", "from": "[TBC]" }
+        {
+          "treatment": "Urgent appointment",
+          "from": "[TBC]"
+        },
+        {
+          "treatment": "White filling",
+          "from": "[TBC]"
+        },
+        {
+          "treatment": "Crown",
+          "from": "[TBC]"
+        }
       ]
     },
     {
       "category": "Missing teeth",
       "items": [
-        { "treatment": "Single dental implant (including crown)", "from": "[TBC]" },
-        { "treatment": "Bridge", "from": "[TBC]" },
-        { "treatment": "Denture", "from": "[TBC]" }
+        {
+          "treatment": "Bridge",
+          "from": "[TBC]"
+        },
+        {
+          "treatment": "Denture",
+          "from": "[TBC]"
+        }
+      ]
+    },
+    {
+      "category": "Cosmetic dentistry",
+      "items": [
+        {
+          "treatment": "[TBC: only treatments offered]",
+          "from": "[TBC]"
+        }
       ]
     }
   ]

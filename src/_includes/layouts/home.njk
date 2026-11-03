@@ -11,6 +11,7 @@ layout: layouts/base.njk
 {% from "components/callback-form.njk" import callbackForm %}
 {% from "components/practical-info.njk" import practicalInfo %}
 {% from "components/placeholder.njk" import placeholder %}
+{% from "components/feature-band.njk" import featureBand %}
 
 {# 1. Hero #}
 {{ hero(home.hero.heading, home.hero.subline, home.hero.photoLabel, site) }}
@@ -55,10 +56,16 @@ layout: layouts/base.njk
   </div>
 </section>
 
-{# 4. Heritage #}
+{# 4. Implants, in Yusef's voice (BRIEF §6, v1.2) #}
+{{ featureBand(home.implants, "dark", site) }}
+
+{# 5. Older patients, written for the adult child (BRIEF §6, v1.3) #}
+{{ featureBand(home.olderPatients, "light", site) }}
+
+{# 6. Heritage #}
 {{ heritageBand(home.heritage, site) }}
 
-{# 5. Clinicians #}
+{# 7. Clinicians #}
 <section class="section" aria-labelledby="team-heading">
   <div class="container">
     <div class="section__head section__head--split">
@@ -74,7 +81,7 @@ layout: layouts/base.njk
   </div>
 </section>
 
-{# 6. Testimonials #}
+{# 8. Testimonials #}
 {%- if collections.testimonials.length %}
 <section class="section section--paper" aria-labelledby="testimonials-heading">
   <div class="container">
@@ -89,14 +96,14 @@ layout: layouts/base.njk
 </section>
 {%- endif %}
 
-{# 7. Callback form + practical info #}
+{# 9. Callback form + practical info #}
 <section class="section on-dark contact-band" aria-labelledby="contact-heading">
   <div class="container split">
     <div>
       <p class="eyebrow">{{ home.contact.eyebrow }}</p>
       <h2 id="contact-heading">{{ home.contact.heading }}</h2>
       <p class="muted">{{ home.contact.text }}</p>
-      {{ callbackForm(site) }}
+      {{ callbackForm(site, "callback", "", "", page.url) }}
     </div>
     {{ practicalInfo(site) }}
   </div>

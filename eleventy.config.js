@@ -5,6 +5,7 @@ import { bundleCss } from "./lib/css.js";
 import { checkOutput } from "./lib/compliance.js";
 import * as schema from "./lib/schema.js";
 import { isLive } from "./src/_data/build.js";
+import { isOffered, lookup } from "./lib/offered.js";
 
 const isTbc = (v) => typeof v === "string" && v.includes("[TBC");
 const escapeHtml = (s) =>
@@ -56,6 +57,14 @@ export default function (eleventyConfig) {
   eleventyConfig.addFilter("head", (items, n) => items.slice(0, n));
   eleventyConfig.addFilter("gdcRegistered", (items) => items.filter((i) => i.data.gdc));
   eleventyConfig.addFilter("isoDate", (d) => new Date(d).toISOString().slice(0, 10));
+  // Navigation and cards for services the practice doesn't offer are dropped (BRIEF §4).
+  eleventyConfig.addFilter("offered", (items, site) => (items || []).filter((i) => isOffered(site, i.when)));
+  eleventyConfig.addFilter("isOffered", (when, site) => isOffered(site, when));
+  eleventyConfig.addFilter("lookup", (site, when) => lookup(site, when));
+  // Active-state helper for nav items that have a dropdown.
+  eleventyConfig.addFilter("inSection", (url, item) =>
+    typeof url === "string" && (url.startsWith(item.url) || (item.children || []).some((c) => url.startsWith(c.url))),
+  );
 
   // Breadcrumb trail built from URL segments and each page's own title.
   eleventyConfig.addFilter("crumbs", (url, all) => {
@@ -76,6 +85,7 @@ export default function (eleventyConfig) {
   eleventyConfig.addFilter("schemaPerson", (clinician, site, url) => schema.person(site, clinician, url));
   eleventyConfig.addFilter("schemaFaq", (faqs) => schema.faqPage(faqs));
   eleventyConfig.addFilter("schemaBreadcrumbs", (crumbs, site) => schema.breadcrumbs(site, crumbs));
+  eleventyConfig.addFilter("schemaMedicalPage", (data, site, url) => schema.medicalWebPage(site, data, url));
 
   // ---- Images --------------------------------------------------------------
   // Every <img> in the output becomes a responsive <picture> with AVIF/WebP

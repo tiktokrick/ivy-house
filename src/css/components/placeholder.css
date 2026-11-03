@@ -18,6 +18,7 @@
 .placeholder--r2x1 { aspect-ratio: 2 / 1; }
 .placeholder--r3x2 { aspect-ratio: 3 / 2; }
 .placeholder--r4x5 { aspect-ratio: 4 / 5; }
+.placeholder--r16x9 { aspect-ratio: 16 / 9; }
 .placeholder__label {
   font-size: var(--text-xs); font-weight: var(--weight-medium);
   letter-spacing: 0.12em; text-transform: uppercase; text-align: center;

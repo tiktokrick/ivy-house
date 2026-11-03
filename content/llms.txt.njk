@@ -14,12 +14,31 @@ eleventyExcludeFromCollections: true
 - NHS: {{ "Yes" if site.nhs else "No, private treatment only" }}
 - How to book: request a callback at {{ site.domain }}/contact/ or call. There is no online booking.
 
-## Treatments
+## Dental implants
 
-- [Keep your teeth healthy]({{ site.domain }}/maintenance/): check-ups, hygiene appointments, children's dentistry
-- [Repair]({{ site.domain }}/repair/): broken teeth, lost fillings, crowns, urgent appointments; many repairs are done the same day
-- [Missing teeth]({{ site.domain }}/missing-teeth/): dental implants, bridges and dentures
-- [Dental implants]({{ site.domain }}/missing-teeth/dental-implants/): process, timeline and indicative cost
+- Who places implants: {{ site.implants.placedBy }}
+- Single implant, including crown: from {{ site.implants.fromPriceSingle }} ({{ site.implants.priceIncludes }})
+- Typical timeline: {{ site.implants.timelineMonths }} months, about {{ site.implants.typicalVisits }} appointments
+- How to book: request an implant consultation callback at {{ site.domain }}/dental-implants/ or call {{ site.phone }}
+- [Dental implants in Ramsgate and Thanet]({{ site.domain }}/dental-implants/)
+- [How implant treatment works]({{ site.domain }}/dental-implants/process/)
+- [Implant costs]({{ site.domain }}/dental-implants/cost/)
+- [Single tooth implants]({{ site.domain }}/dental-implants/single-tooth/)
+{%- if "implants.services.multipleTeeth" | isOffered(site) %}
+- [Replacing several teeth]({{ site.domain }}/dental-implants/multiple-teeth/)
+{%- endif %}
+{%- if "implants.services.fullArch" | isOffered(site) %}
+- [Full-arch fixed teeth]({{ site.domain }}/dental-implants/full-arch/)
+{%- endif %}
+- [Am I suitable for implants?]({{ site.domain }}/dental-implants/am-i-suitable/)
+
+## Other treatments
+
+- [Family dentistry]({{ site.domain }}/family-dentistry/): check-ups and hygiene for adults, children and older parents
+- [Older patients]({{ site.domain }}/family-dentistry/older-patients/): booking for a parent, coming into appointments, paying on their behalf
+- [Repairs]({{ site.domain }}/repair/): broken teeth, lost fillings, crowns, urgent appointments; many repairs are done the same day
+- [Missing teeth]({{ site.domain }}/missing-teeth/): implants, bridges and dentures compared
+- [Cosmetic dentistry]({{ site.domain }}/cosmetic-dentistry/): natural-looking improvements to your smile
 
 ## More
 

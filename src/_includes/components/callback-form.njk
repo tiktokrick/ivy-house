@@ -1,8 +1,12 @@
 {#- Callback request (BRIEF §6). Netlify Forms with a honeypot, no reCAPTCHA.
     Collects the minimum: no email, no clinical details. -#}
-{% macro callbackForm(site, id = "callback") -%}
+{#- topic and forWhom pre-select an answer (implant pages: "Dental implants";
+    older-patients page: "My parent or someone I care for"). sourcePage lets the
+    practice see which page an enquiry came from (BRIEF §6). -#}
+{% macro callbackForm(site, id = "callback", topic = "", forWhom = "", sourcePage = "") -%}
 <form class="callback-form" name="callback" method="POST" action="/thank-you/" data-netlify="true" netlify-honeypot="company" id="{{ id }}" data-callback-form>
   <input type="hidden" name="form-name" value="callback">
+  <input type="hidden" name="source-page" value="{{ sourcePage }}">
   <p class="callback-form__honeypot" aria-hidden="true">
     <label>Leave this empty <input name="company" tabindex="-1" autocomplete="off"></label>
   </p>
@@ -30,6 +34,21 @@
     <label class="choice"><input type="radio" name="patient-type" value="Existing"> Existing</label>
   </fieldset>
 
+  <fieldset class="field field--choices">
+    <legend>Who is the appointment for?</legend>
+    {%- set whoOptions = ["Me", "My child", "My parent or someone I care for", "More than one of us"] %}
+    {%- for opt in whoOptions %}
+    <label class="choice"><input type="radio" name="appointment-for" value="{{ opt }}"{% if (forWhom and opt == forWhom) or (not forWhom and loop.first) %} checked{% endif %}> {{ opt }}</label>
+    {%- endfor %}
+  </fieldset>
+
+  <fieldset class="field field--choices">
+    <legend>What can we help with? <span class="field__optional">(optional)</span></legend>
+    {%- for opt in ["Check-up", "Repair", "Dental implants", "Cosmetic", "Other"] %}
+    <label class="choice"><input type="radio" name="help-with" value="{{ opt }}"{% if opt == topic %} checked{% endif %}> {{ opt }}</label>
+    {%- endfor %}
+  </fieldset>
+
   <div class="field">
     <label for="{{ id }}-message">Message <span class="field__optional">(optional)</span></label>
     <textarea id="{{ id }}-message" name="message" rows="3" aria-describedby="{{ id }}-message-hint"></textarea>
@@ -43,7 +62,7 @@
     </label>
   </div>
 
-  <button class="button button--solid" type="submit">Request a callback</button>
+  <button class="button button--solid" type="submit">{{ "Request an implant consultation" if topic == "Dental implants" else "Request a callback" }}</button>
   <p class="field__hint">For anything urgent, call us on <a href="{{ site.phone | telHref }}" data-event="phone_click">{{ site.phone | tbc | safe }}</a>.</p>
 </form>
 {%- endmacro %}

@@ -5,8 +5,9 @@
   "description": "Website for Ivy House Dental Practice, Ramsgate (thanetdentist.com)",
   "scripts": {
     "start": "eleventy --serve --quiet",
-    "build": "eleventy",
-    "build:production": "node scripts/build-production.js"
+    "build": "npm run clean && eleventy",
+    "build:production": "node scripts/build-production.js",
+    "clean": "node -e \"require('fs').rmSync('_site',{recursive:true,force:true})\""
   },
   "engines": {
     "node": ">=24"

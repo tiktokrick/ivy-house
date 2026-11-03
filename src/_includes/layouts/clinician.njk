@@ -20,6 +20,21 @@ layout: layouts/base.njk
       {%- if qualifications and qualifications.length %}
       <dt>Qualifications</dt><dd>{{ qualifications | join(", ") | tbc | safe }}</dd>
       {%- endif %}
+      {%- if implantTraining and implantTraining.length %}
+      <dt>Implant training</dt><dd>{{ implantTraining | join(", ") | tbc | safe }}</dd>
+      {%- endif %}
+      {%- if yearsPlacingImplants %}
+      <dt>Placing implants for</dt><dd>{{ yearsPlacingImplants | tbc | safe }}{% if not (yearsPlacingImplants | isTbc) %} years{% endif %}</dd>
+      {%- endif %}
+      {%- if implantsPlaced %}
+      <dt>Implants placed</dt><dd>{{ implantsPlaced | tbc | safe }}</dd>
+      {%- endif %}
+      {%- if implantSystem %}
+      <dt>Implant system</dt><dd>{{ implantSystem | tbc | safe }}</dd>
+      {%- endif %}
+      {%- if memberships and memberships.length %}
+      <dt>Memberships</dt><dd>{{ memberships | join(", ") | tbc | safe }}</dd>
+      {%- endif %}
       {%- if interests and interests.length %}
       <dt>Interests</dt><dd>{{ interests | join(", ") }}</dd>
       {%- endif %}

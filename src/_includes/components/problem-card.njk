@@ -1,9 +1,17 @@
-{#- "How can we help?" card: a patient problem linking to its category page. -#}
+{#- "How can we help?" card: a patient problem linking to its category page.
+    A card with `links` shows several destinations instead of one. -#}
 {% macro problemCard(card) -%}
-<article class="problem-card">
+<article class="problem-card{% if card.links %} problem-card--multi{% endif %}">
   <p class="problem-card__index" aria-hidden="true">{{ card.index }}</p>
-  <h3 class="problem-card__title"><a href="{{ card.url }}">{{ card.title }}</a></h3>
+  <h3 class="problem-card__title">{% if card.links %}{{ card.title }}{% else %}<a href="{{ card.url }}">{{ card.title }}</a>{% endif %}</h3>
   <p class="problem-card__text">{{ card.text }}</p>
+  {%- if card.photoLabel %}<p class="problem-card__photo small">PHOTO: {{ card.photoLabel }}</p>{% endif %}
+  {%- if card.links %}
+  <ul class="problem-card__links">
+    {%- for l in card.links %}<li><a href="{{ l.url }}">{{ l.label }} <span aria-hidden="true">&rarr;</span></a></li>{% endfor %}
+  </ul>
+  {%- else %}
   <p class="problem-card__more" aria-hidden="true">Find out more <span>&rarr;</span></p>
+  {%- endif %}
 </article>
 {%- endmacro %}

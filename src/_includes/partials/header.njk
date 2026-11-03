@@ -14,7 +14,21 @@
     <nav class="site-nav" id="site-nav" aria-label="Main">
       <ul class="site-nav__list">
         {%- for item in nav %}
+        {%- if item.children %}
+        {#- Dropdown on native <details>: every link is in the HTML and works without JS (BRIEF §4). -#}
+        <li class="site-nav__group">
+          <details class="site-nav__details" data-nav-group>
+            <summary class="site-nav__summary{% if page.url | inSection(item) %} is-current{% endif %}">{{ item.label }}</summary>
+            <ul class="site-nav__sub">
+              {%- for child in item.children | offered(site) %}
+              <li><a href="{{ child.url }}"{% if page.url == child.url %} aria-current="page"{% endif %}>{{ child.label }}</a></li>
+              {%- endfor %}
+            </ul>
+          </details>
+        </li>
+        {%- else %}
         <li><a href="{{ item.url }}"{% if page.url and page.url.startsWith(item.url) %} aria-current="{{ 'page' if page.url == item.url else 'true' }}"{% endif %}>{{ item.label }}</a></li>
+        {%- endif %}
         {%- endfor %}
       </ul>
     </nav>
@@ -23,7 +37,11 @@
       <a class="site-header__phone" href="{{ site.phone | telHref }}" data-event="phone_click">
         <span class="visually-hidden">Call us on </span>{{ site.phone | tbc | safe }}
       </a>
-      {{ button("Request a callback", "/contact/#callback", "solid", "small") }}
+      {%- if callbackTopic == "implants" %}
+      {{ button("Implant consultation", "#callback", "solid", "small") }}
+      {%- else %}
+      {{ button("Request a callback", "#callback" if inlineCallback else "/contact/#callback", "solid", "small") }}
+      {%- endif %}
     </div>
   </div>
 </header>

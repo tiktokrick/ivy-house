@@ -40,6 +40,9 @@
   {%- if faqs and faqs.length %}
   <script type="application/ld+json">{{ faqs | schemaFaq | jsonLd | safe }}</script>
   {%- endif %}
+  {%- if medicalPage %}
+  <script type="application/ld+json">{{ { title: title, metaTitle: metaTitle, description: description, lastReviewed: lastReviewed, procedure: procedure } | schemaMedicalPage(site, page.url) | jsonLd | safe }}</script>
+  {%- endif %}
 
   {%- if build.isProduction and site.analytics.plausibleDomain %}
   <script defer data-domain="{{ site.analytics.plausibleDomain }}" src="https://plausible.io/js/script.js"></script>
@@ -50,7 +53,7 @@
   <script defer src="{{ script }}"></script>
   {%- endfor %}
 </head>
-<body>
+<body{% if viewEvent %} data-view-event="{{ viewEvent }}"{% endif %}>
   <a class="skip-link" href="#main">Skip to content</a>
   {% include "partials/header.njk" %}
   <main id="main" tabindex="-1">

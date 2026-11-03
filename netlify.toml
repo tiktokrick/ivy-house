@@ -22,6 +22,18 @@
 
 # [TBC] Ivy House and town domains: add one block per domain once purchased.
 
+# ---- Renamed pages (brief v1.2/v1.3) -------------------------------------------
+# These URLs were in review previews shared with the practice.
+[[redirects]]
+  from = "/maintenance/"
+  to = "/family-dentistry/"
+  status = 301
+
+[[redirects]]
+  from = "/missing-teeth/dental-implants/"
+  to = "/dental-implants/"
+  status = 301
+
 # ---- Security headers ---------------------------------------------------------
 # The Content-Security-Policy is set per page in a <meta> tag, because /admin
 # (Decap CMS) needs a looser policy than the public site.
