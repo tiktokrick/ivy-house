@@ -1,0 +1,85 @@
+---
+layout: layouts/base.njk
+---
+{#- Implant hub and spoke pages (BRIEF §6A). Every implant page carries an answer
+    box, a reviewed-by line, a risks section, FAQs and an implant-consultation
+    form; lib/compliance.js fails the build if any of them is missing. -#}
+{% from "components/breadcrumbs.njk" import breadcrumbs %}
+{% from "components/fee-table.njk" import fromPrice %}
+{% from "components/faq.njk" import faq %}
+{% from "components/before-after.njk" import beforeAfter %}
+{% from "components/answer-box.njk" import answerBox %}
+{% from "components/reviewed-by.njk" import reviewedBy %}
+{% from "components/implant-risks.njk" import implantRisks %}
+{% from "components/callback-form.njk" import callbackForm %}
+{% from "components/practical-info.njk" import practicalInfo %}
+<div class="container">
+  {{ breadcrumbs(page.url | crumbs(collections.all)) }}
+  <header class="page-head">
+    {%- if eyebrow %}<p class="eyebrow">{{ eyebrow }}</p>{% endif %}
+    <h1>{{ heading or title }}</h1>
+    {%- if lede %}<p class="page-head__lede">{{ lede }}</p>{% endif %}
+    {{ answerBox(answer or "[TBC: 40–60 word direct answer to this page's main question]") }}
+    <div class="page-head__actions">
+      <a class="button button--solid" href="#callback">Book an implant consultation</a>
+      <a class="button button--outline" href="{{ site.phone | telHref }}" data-event="phone_click">Call {{ site.phone | tbc | safe }}</a>
+    </div>
+    {{ reviewedBy(site, lastReviewed) }}
+  </header>
+</div>
+
+<div class="container section--tight">
+  <div class="split">
+    <div class="prose">
+      {{ content | safe }}
+    </div>
+    <aside class="category-aside" aria-label="Price guide">
+      {{ fromPrice(price.label if price else "Single implant, including crown", price.from if price else site.implants.fromPriceSingle) }}
+      <p class="small muted">You'll get a written treatment plan and estimate before any treatment starts.</p>
+      <p class="small"><a href="/dental-implants/cost/">What's included in the price</a></p>
+      <p class="small"><a href="/dental-implants/am-i-suitable/">Am I suitable for implants?</a></p>
+    </aside>
+  </div>
+</div>
+
+{%- set cases = collections.gallery | byCategory("implant") %}
+{%- if cases.length %}
+<section class="section section--paper" aria-labelledby="cases-heading">
+  <div class="container">
+    <div class="section__head section__head--split">
+      <h2 id="cases-heading">Real implant results</h2>
+      <a href="/smile-gallery/">See the smile gallery</a>
+    </div>
+    <div class="grid grid--3">
+      {%- for c in cases | head(3) %}{{ beforeAfter(c) }}{% endfor %}
+    </div>
+  </div>
+</section>
+{%- endif %}
+
+<div class="container container--narrow section">
+  {{ implantRisks(site) }}
+</div>
+
+<div class="container container--narrow section--tight">
+  {%- if faqs and faqs.length %}
+  {{ faq(faqs) }}
+  {%- else %}
+  <section class="faq" aria-labelledby="faq-heading">
+    <h2 id="faq-heading">Questions people ask</h2>
+    <p><mark class="tbc">[TBC: FAQs to follow in phase 2, from the FAQ bank in BRIEF §6A.4]</mark></p>
+  </section>
+  {%- endif %}
+</div>
+
+<section class="section on-dark contact-band" aria-labelledby="contact-heading">
+  <div class="container split">
+    <div>
+      <p class="eyebrow">Implant consultation</p>
+      <h2 id="contact-heading">Talk to {{ site.principal.name }} about implants</h2>
+      <p class="muted">Leave your name and number and we'll call you back to arrange a consultation. You'll get a written plan and costs before you decide.</p>
+      {{ callbackForm(site, "callback", "Dental implants", "", page.url) }}
+    </div>
+    {{ practicalInfo(site) }}
+  </div>
+</section>

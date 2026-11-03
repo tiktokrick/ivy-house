@@ -1,0 +1,31 @@
+---
+layout: layouts/base.njk
+scripts:
+  - /js/map.js
+---
+{% from "components/breadcrumbs.njk" import breadcrumbs %}
+{% from "components/callback-form.njk" import callbackForm %}
+{% from "components/practical-info.njk" import practicalInfo %}
+{% from "components/map-embed.njk" import mapEmbed %}
+<div class="container">
+  {{ breadcrumbs(page.url | crumbs(collections.all)) }}
+  <header class="page-head">
+    <h1>{{ heading or title }}</h1>
+    {%- if lede %}<p class="page-head__lede">{{ lede }}</p>{% endif %}
+  </header>
+</div>
+<div class="container section--tight split">
+  <div>
+    <h2>Request a callback</h2>
+    {{ content | safe }}
+    {{ callbackForm(site, "callback", "", "", page.url) }}
+  </div>
+  <div>
+    <h2>Call us</h2>
+    <p class="contact-phone"><a href="{{ site.phone | telHref }}" data-event="phone_click">{{ site.phone | tbc | safe }}</a></p>
+    {{ practicalInfo(site) }}
+  </div>
+</div>
+<div class="container section--tight">
+  {{ mapEmbed(site) }}
+</div>

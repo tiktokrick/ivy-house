@@ -1,0 +1,8 @@
+{#- Direct answer at the top of an implant page (BRIEF §6A.4): 40–60 words that
+    answer the page's main question on their own, for search and AI answers. -#}
+{% macro answerBox(text) -%}
+<div class="answer-box" data-answer-box>
+  <p class="answer-box__label">The short answer</p>
+  <p class="answer-box__text">{{ text | tbc | safe }}</p>
+</div>
+{%- endmacro %}

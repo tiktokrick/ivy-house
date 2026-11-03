@@ -1,0 +1,37 @@
+{% from "components/placeholder.njk" import placeholder %}
+{% from "components/button.njk" import button %}
+{#- Homepage feature band: the implant band (dark, in Yusef's voice) and the
+    older-patients band (light). Copy lives in content/index.md. -#}
+{#- Points may include {fromPriceSingle}, filled from site.json. -#}
+{% macro featureBand(b, tone = "dark", site = {}) -%}
+<section class="feature-band feature-band--{{ tone }}{% if tone == 'dark' %} on-dark{% endif %} section" aria-labelledby="{{ b.id }}-heading">
+  <div class="container feature-band__grid">
+    <div class="feature-band__media">
+      {{ placeholder(b.photoLabel, "4/5", "dark" if tone == "dark" else "light") }}
+    </div>
+    <div class="feature-band__body">
+      <p class="eyebrow">{{ b.eyebrow }}</p>
+      <h2 id="{{ b.id }}-heading">{{ b.heading | tbc | safe }}</h2>
+      {%- if b.text %}<p class="feature-band__text">{{ b.text }}</p>{% endif %}
+      {%- if b.points %}
+      <ul class="feature-band__points">
+        {%- for pt in b.points %}
+        {%- set price = site.implants.fromPriceSingle if site.implants else "" %}
+        {%- if "{fromPriceSingle}" in pt %}
+        <li>{{ pt.split("{fromPriceSingle}")[0] }}{{ price | tbc | safe }}{{ pt.split("{fromPriceSingle}")[1] }}</li>
+        {%- else %}
+        <li>{{ pt | tbc | safe }}</li>
+        {%- endif %}
+        {%- endfor %}
+      </ul>
+      {%- endif %}
+      {%- if b.links %}
+      <ul class="feature-band__links">
+        {%- for l in b.links %}<li><a href="{{ l.url }}">{{ l.label }}</a></li>{% endfor %}
+      </ul>
+      {%- endif %}
+      {{ button(b.cta.label, b.cta.url, "solid" if tone == "dark" else "outline") }}
+    </div>
+  </div>
+</section>
+{%- endmacro %}

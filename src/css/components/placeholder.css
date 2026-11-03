@@ -1,0 +1,26 @@
+/* Labelled stand-in for photography that hasn't been shot yet. */
+.placeholder {
+  position: relative; display: grid; place-items: center;
+  width: 100%; aspect-ratio: 4 / 3;
+  padding: var(--space-s);
+  background:
+    repeating-linear-gradient(135deg, transparent 0 14px, rgb(0 0 0 / 0.035) 14px 15px),
+    var(--placeholder);
+  color: var(--ink);
+}
+.placeholder--dark {
+  background:
+    repeating-linear-gradient(135deg, transparent 0 14px, rgb(255 255 255 / 0.04) 14px 15px),
+    var(--placeholder-dark);
+  color: var(--stone-on-dark);
+}
+.placeholder--r1x1 { aspect-ratio: 1; }
+.placeholder--r2x1 { aspect-ratio: 2 / 1; }
+.placeholder--r3x2 { aspect-ratio: 3 / 2; }
+.placeholder--r4x5 { aspect-ratio: 4 / 5; }
+.placeholder--r16x9 { aspect-ratio: 16 / 9; }
+.placeholder__label {
+  font-size: var(--text-xs); font-weight: var(--weight-medium);
+  letter-spacing: 0.12em; text-transform: uppercase; text-align: center;
+  border: 1px solid currentColor; padding: 0.35rem 0.6rem;
+}

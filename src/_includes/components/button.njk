@@ -1,0 +1,4 @@
+{#- Call-to-action link styled as a button. variant: "solid" | "outline". -#}
+{% macro button(label, href, variant = "solid", size = "", event = "") -%}
+<a class="button button--{{ variant }}{% if size %} button--{{ size }}{% endif %}" href="{{ href }}"{% if event %} data-event="{{ event }}"{% endif %}>{{ label | safe }}</a>
+{%- endmacro %}

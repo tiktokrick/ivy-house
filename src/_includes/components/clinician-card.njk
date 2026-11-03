@@ -1,0 +1,21 @@
+{% from "components/placeholder.njk" import placeholder %}
+{#- Team member card. Links to a profile page only when the member has one. -#}
+{% macro clinicianCard(item) -%}
+{%- set d = item.data -%}
+{%- set label = d.role if (d.name | isTbc) else d.name -%}
+<article class="clinician-card">
+  {%- if item.url %}
+  <a class="clinician-card__media" href="{{ item.url }}" tabindex="-1" aria-hidden="true">
+  {%- else %}
+  <div class="clinician-card__media">
+  {%- endif %}
+    {%- if d.photo %}<img src="{{ d.photo }}" alt="" sizes="(min-width: 60rem) 25vw, 90vw">{% else %}{{ placeholder(label, "4/5") }}{% endif %}
+  {% if item.url %}</a>{% else %}</div>{% endif %}
+  <div class="clinician-card__body">
+    <h3 class="clinician-card__name">{% if item.url %}<a href="{{ item.url }}">{{ d.name | tbc | safe }}</a>{% else %}{{ d.name | tbc | safe }}{% endif %}</h3>
+    <p class="clinician-card__role">{{ d.role }}</p>
+    {%- if d.gdc %}<p class="clinician-card__gdc">GDC {{ d.gdc | tbc | safe }}</p>{% endif %}
+    {%- if d.summary %}<p class="clinician-card__summary">{{ d.summary }}</p>{% endif %}
+  </div>
+</article>
+{%- endmacro %}

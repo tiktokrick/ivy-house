@@ -1,0 +1,27 @@
+{#- Indicative "from" prices. Pass a category name to show one group only. -#}
+{% macro feeTable(fees, category = "") -%}
+{%- for group in fees.groups %}
+{%- if not category or group.category == category %}
+<table class="fee-table">
+  <caption class="fee-table__caption">{{ group.category }}</caption>
+  <thead>
+    <tr><th scope="col">Treatment</th><th scope="col" class="fee-table__price">From</th></tr>
+  </thead>
+  <tbody>
+    {%- for item in group.items %}
+    <tr>
+      <th scope="row">{{ item.treatment }}</th>
+      <td class="fee-table__price">{{ item.from | tbc | safe }}</td>
+    </tr>
+    {%- endfor %}
+  </tbody>
+</table>
+{%- endif %}
+{%- endfor %}
+<p class="fee-table__note">{{ fees.intro }}</p>
+{%- endmacro %}
+
+{#- Single "from" price line for category pages. -#}
+{% macro fromPrice(label, price) -%}
+<p class="from-price"><span class="from-price__label">{{ label }} from</span> <span class="from-price__value">{{ price | tbc | safe }}</span> <a href="/fees/">See all fees</a></p>
+{%- endmacro %}

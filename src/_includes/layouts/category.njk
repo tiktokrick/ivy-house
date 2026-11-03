@@ -1,0 +1,78 @@
+---
+layout: layouts/base.njk
+---
+{#- Problem-led category page (BRIEF §6): intro, treatments, what to expect,
+    from-price, FAQs, related before/afters, CTA. -#}
+{% from "components/breadcrumbs.njk" import breadcrumbs %}
+{% from "components/cta-band.njk" import ctaBand %}
+{% from "components/fee-table.njk" import fromPrice %}
+{% from "components/faq.njk" import faq %}
+{% from "components/before-after.njk" import beforeAfter %}
+{% from "components/button.njk" import button %}
+{% from "components/placeholder.njk" import placeholder %}
+{% from "components/callback-form.njk" import callbackForm %}
+{% from "components/practical-info.njk" import practicalInfo %}
+<div class="container">
+  {{ breadcrumbs(page.url | crumbs(collections.all)) }}
+  <header class="page-head">
+    {%- if eyebrow %}<p class="eyebrow">{{ eyebrow }}</p>{% endif %}
+    <h1>{{ heading or title }}</h1>
+    {%- if lede %}<p class="page-head__lede">{{ lede }}</p>{% endif %}
+    <div class="page-head__actions">
+      {{ button("Request a callback", "#callback" if inlineCallback else "/contact/#callback", "solid") }}
+      <a class="button button--outline" href="{{ site.phone | telHref }}" data-event="phone_click">Call {{ site.phone | tbc | safe }}</a>
+    </div>
+  </header>
+  {%- if heroPhotoLabel %}
+  <div class="page-photo">{{ placeholder(heroPhotoLabel, "16/9") }}</div>
+  {%- endif %}
+</div>
+
+<div class="container section--tight">
+  <div class="split">
+    <div class="prose">
+      {{ content | safe }}
+    </div>
+    <aside class="category-aside" aria-label="Price guide">
+      {%- if price %}{{ fromPrice(price.label, price.from) }}{% endif %}
+      <p class="small muted">You'll get a written treatment plan and estimate before any treatment starts.</p>
+    </aside>
+  </div>
+</div>
+
+{%- set cases = collections.gallery | byCategory(galleryCategory) %}
+{%- if galleryCategory and cases.length %}
+<section class="section section--paper" aria-labelledby="cases-heading">
+  <div class="container">
+    <div class="section__head section__head--split">
+      <h2 id="cases-heading">Real results</h2>
+      <a href="/smile-gallery/">See the smile gallery</a>
+    </div>
+    <div class="grid grid--3">
+      {%- for c in cases | head(3) %}{{ beforeAfter(c) }}{% endfor %}
+    </div>
+  </div>
+</section>
+{%- endif %}
+
+{%- if faqs and faqs.length %}
+<div class="container container--narrow section">
+  {{ faq(faqs) }}
+</div>
+{%- endif %}
+
+{%- if inlineCallback %}
+<section class="section on-dark contact-band" aria-labelledby="contact-heading">
+  <div class="container split">
+    <div>
+      <p class="eyebrow">Get in touch</p>
+      <h2 id="contact-heading">Request a callback to talk it through</h2>
+      <p class="muted">Leave your name and number and we'll call you back. Please don't include medical details; we'll talk about those on the phone.</p>
+      {{ callbackForm(site, "callback", "", callbackFor, page.url) }}
+    </div>
+    {{ practicalInfo(site) }}
+  </div>
+</section>
+{%- else %}
+{{ ctaBand(site) }}
+{%- endif %}

@@ -74,3 +74,11 @@
 - **Type (free Google fonts):** headings in Cormorant Garamond (light/medium, high contrast, the closest free match to Ivy Presto); body in Jost or Lato at 300–400. If the "angular" font Yusef likes turns out to be Ivy Presto, an Adobe Fonts licence is the alternative. It's apt for an Ivy House, but it adds a recurring cost.
 - **Imagery:** real people only, consistent black uniforms, warm interior shots (the period house, the pink front door). Placeholders until the photo shoot.
 - **Motion:** none beyond subtle fades; no pop-ups.
+
+---
+
+# Implant section reference: Dawood & Tanner (dawoodandtanner.co.uk)
+
+*Added 3 Nov 2026 with brief v1.1.* Use for the **structure** of the implant cluster only: implants as a top-level menu with sub-pages, a numbered process page with a full FAQ, a distinct "Book an implant consultation" call to action, patient stories grouped by treatment, and (Phase 2) a referral page for dentists.
+
+Don't borrow its claims ("most trusted", "world-class", "specialist-led", unquantified implant numbers), its review widget, video-only stories or its emailed suitability questionnaire. Ivy House goes further than it on prices and FAQs. The full adopt/avoid table is in BRIEF §6A.1.

@@ -1,0 +1,6 @@
+{#- Neutral stand-in until the photo shoot (BRIEF §5 Imagery). Never stock. -#}
+{% macro placeholder(label, ratio = "4/3", tone = "light") -%}
+<div class="placeholder placeholder--{{ tone }} placeholder--r{{ ratio | replace('/', 'x') }}" role="img" aria-label="Photo to follow: {{ label }}">
+  <span class="placeholder__label">PHOTO: {{ label }}</span>
+</div>
+{%- endmacro %}

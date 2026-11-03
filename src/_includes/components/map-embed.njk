@@ -1,0 +1,11 @@
+{#- Click-to-load map: no third-party request until the visitor asks (BRIEF §5).
+    Without JS it is a plain link to Google Maps. -#}
+{% macro mapEmbed(site) -%}
+{%- set query = site.name + ", " + site.address.street + ", " + site.address.town + " " + site.address.postcode -%}
+<div class="map-embed" data-map data-query="{{ query }}">
+  <div class="map-embed__placeholder">
+    <p>The map is provided by Google and loads only when you ask for it.</p>
+    <a class="button button--outline" href="https://www.google.com/maps/search/?api=1&amp;query={{ query | urlencode }}" data-event="directions_click" data-map-load>Show map and directions</a>
+  </div>
+</div>
+{%- endmacro %}

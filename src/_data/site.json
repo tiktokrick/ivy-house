@@ -1,0 +1,128 @@
+{
+  "name": "Ivy House Dental Practice",
+  "domain": "https://thanetdentist.com",
+  "tagline": "Private dentistry in Ramsgate. Family-run for 60 years.",
+  "foundedYear": "[TBC]",
+  "yearsLabel": "60 years",
+  "acceptingNewPatients": true,
+  "nhs": false,
+  "address": {
+    "street": "[TBC]",
+    "town": "Ramsgate",
+    "county": "Kent",
+    "postcode": "[TBC]"
+  },
+  "geo": {
+    "lat": "[TBC]",
+    "lng": "[TBC]"
+  },
+  "phone": "[TBC]",
+  "email": "[TBC]@thanetdentist.com",
+  "hours": [
+    {
+      "day": "Monday",
+      "opens": "[TBC]",
+      "closes": "[TBC]"
+    },
+    {
+      "day": "Tuesday",
+      "opens": "[TBC]",
+      "closes": "[TBC]"
+    },
+    {
+      "day": "Wednesday",
+      "opens": "[TBC]",
+      "closes": "[TBC]"
+    },
+    {
+      "day": "Thursday",
+      "opens": "[TBC]",
+      "closes": "[TBC]"
+    },
+    {
+      "day": "Friday",
+      "opens": "[TBC]",
+      "closes": "[TBC]"
+    },
+    {
+      "day": "Saturday",
+      "opens": "[TBC]",
+      "closes": "[TBC]"
+    },
+    {
+      "day": "Sunday",
+      "opens": "[TBC]",
+      "closes": "[TBC]"
+    }
+  ],
+  "cqc": {
+    "rating": "[TBC]",
+    "url": "[TBC]",
+    "locationId": "[TBC]"
+  },
+  "principal": {
+    "name": "Dr Yusef Ali",
+    "gdc": "[TBC]",
+    "specialistList": "[TBC]"
+  },
+  "implants": {
+    "placedBy": "[TBC: Yusef / visiting surgeon]",
+    "system": "[TBC]",
+    "yearsPlacing": "[TBC]",
+    "fromPriceSingle": "[TBC]",
+    "priceIncludes": "[TBC]",
+    "consultationFee": "[TBC]",
+    "timelineMonths": "[TBC]",
+    "typicalVisits": "[TBC]",
+    "imaging": "[TBC: in-house CBCT / referred]",
+    "sedation": "[TBC]",
+    "finance": {
+      "offered": "[TBC]",
+      "fcaAuthorised": "[TBC]"
+    },
+    "storiesPublished": false,
+    "services": {
+      "singleTooth": true,
+      "multipleTeeth": "[TBC]",
+      "fullArch": "[TBC]",
+      "boneGrafting": "[TBC]",
+      "sameDayTeeth": "[TBC]",
+      "acceptsReferrals": "[TBC]"
+    }
+  },
+  "cosmetic": {
+    "whitening": "[TBC]",
+    "bonding": "[TBC]",
+    "veneers": "[TBC]",
+    "cosmeticCrowns": "[TBC]",
+    "straightening": "[TBC]"
+  },
+  "olderPatients": {
+    "longerAppointments": "[TBC]",
+    "carersWelcome": "[TBC]",
+    "stepFreeAccess": "[TBC]",
+    "homeVisits": "[TBC]",
+    "dementiaTraining": "[TBC]",
+    "dropOff": "[TBC]",
+    "jointBookings": "[TBC]",
+    "familyReminders": "[TBC]",
+    "thirdPartyPayment": "[TBC]"
+  },
+  "children": {
+    "fromAge": "[TBC]",
+    "familyBookings": "[TBC]"
+  },
+  "parking": "[TBC]",
+  "priceRange": "[TBC]",
+  "areaServed": [
+    "Ramsgate",
+    "Broadstairs",
+    "Margate",
+    "Sandwich",
+    "Thanet"
+  ],
+  "analytics": {
+    "plausibleDomain": "thanetdentist.com"
+  },
+  "social": {}
+}

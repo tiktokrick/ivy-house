@@ -1,0 +1,17 @@
+{#- Required on every implant page (BRIEF §7): balanced information about a
+    surgical procedure. Copy is a draft for Yusef to review. -#}
+{% macro implantRisks(site) -%}
+<section class="risks" aria-labelledby="risks-heading" data-risks>
+  <!-- DRAFT: for Yusef review -->
+  <h2 id="risks-heading">Risks and what can go wrong</h2>
+  <p>Implant treatment is minor surgery. Most people heal well, but you should know the risks before you decide. We'll talk them through with you at your consultation and set them out in your written plan.</p>
+  <ul>
+    <li><strong>Infection</strong> around the implant, during healing or later on.</li>
+    <li><strong>Nerve injury</strong>, which can cause numbness or tingling in the lip, chin or tongue. This is uncommon and usually temporary.</li>
+    <li><strong>Implant failure</strong>: occasionally an implant doesn't fuse with the bone and has to be removed and, if suitable, replaced.</li>
+    <li><strong>Needing a bone graft</strong> if there isn't enough bone to hold the implant{% if (site | lookup("implants.services.boneGrafting")) | isTbc %} <mark class="tbc">[TBC: offered in-house?]</mark>{% endif %}.</li>
+    <li><strong>Gum disease around implants</strong> if they aren't cleaned well. Implants need daily care and regular hygiene visits, just like natural teeth.</li>
+  </ul>
+  <p>Smoking and some medical conditions make problems more likely. <a href="/dental-implants/am-i-suitable/">Find out if implants are right for you</a>.</p>
+</section>
+{%- endmacro %}

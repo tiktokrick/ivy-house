@@ -1,0 +1,7 @@
+{#- "Clinically reviewed by" line on every implant page (BRIEF §5, §6A.4). -#}
+{% macro reviewedBy(site, lastReviewed) -%}
+<p class="reviewed-by" data-reviewed-by>
+  Clinically reviewed by <a href="/team/yusef-ali/">{{ site.principal.name }}</a>, GDC {{ site.principal.gdc | tbc | safe }}.
+  Last reviewed {{ (lastReviewed or "[TBC]") | tbc | safe }}.
+</p>
+{%- endmacro %}

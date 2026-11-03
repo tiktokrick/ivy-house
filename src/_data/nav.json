@@ -1,0 +1,32 @@
+[
+  {
+    "label": "Dental implants",
+    "url": "/dental-implants/",
+    "children": [
+      { "label": "Overview", "url": "/dental-implants/" },
+      { "label": "How it works", "url": "/dental-implants/process/" },
+      { "label": "Cost", "url": "/dental-implants/cost/" },
+      { "label": "Single tooth", "url": "/dental-implants/single-tooth/" },
+      { "label": "Multiple teeth", "url": "/dental-implants/multiple-teeth/", "when": "implants.services.multipleTeeth" },
+      { "label": "Full arch", "url": "/dental-implants/full-arch/", "when": "implants.services.fullArch" },
+      { "label": "Am I suitable?", "url": "/dental-implants/am-i-suitable/" },
+      { "label": "Patient stories", "url": "/dental-implants/patient-stories/", "when": "implants.storiesPublished" }
+    ]
+  },
+  {
+    "label": "Treatments",
+    "url": "/family-dentistry/",
+    "children": [
+      { "label": "Family dentistry", "url": "/family-dentistry/" },
+      { "label": "Older patients", "url": "/family-dentistry/older-patients/" },
+      { "label": "Repairs", "url": "/repair/" },
+      { "label": "Missing teeth", "url": "/missing-teeth/" },
+      { "label": "Cosmetic dentistry", "url": "/cosmetic-dentistry/" }
+    ]
+  },
+  { "label": "Smile gallery", "url": "/smile-gallery/" },
+  { "label": "About", "url": "/about/" },
+  { "label": "Team", "url": "/team/" },
+  { "label": "Fees", "url": "/fees/" },
+  { "label": "Contact", "url": "/contact/" }
+]

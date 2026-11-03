@@ -1,0 +1,34 @@
+{% from "components/placeholder.njk" import placeholder %}
+{% from "components/button.njk" import button %}
+{#- Family heritage band with a simple timeline. -#}
+{% macro heritageBand(h, site) -%}
+<section class="heritage on-dark section" aria-labelledby="heritage-heading">
+  <div class="container heritage__grid">
+    <div class="heritage__media">
+      {{ placeholder(h.photoLabel, "4/5", "dark") }}
+      <p class="heritage__since">
+        <span class="heritage__since-label">Since</span>
+        <span class="heritage__since-year">{{ site.foundedYear | tbc | safe }}</span>
+      </p>
+    </div>
+    <div class="heritage__body">
+      <p class="eyebrow">{{ h.eyebrow }}</p>
+      <h2 id="heritage-heading">{{ h.heading }}</h2>
+      {%- for para in h.paragraphs %}
+      <p>{{ para }}</p>
+      {%- endfor %}
+      {%- if h.timeline %}
+      <ol class="timeline">
+        {%- for t in h.timeline %}
+        <li class="timeline__item">
+          <span class="timeline__when">{{ t.when | tbc | safe }}</span>
+          <span class="timeline__what">{{ t.what }}</span>
+        </li>
+        {%- endfor %}
+      </ol>
+      {%- endif %}
+      {{ button("Our story", "/about/", "outline") }}
+    </div>
+  </div>
+</section>
+{%- endmacro %}
